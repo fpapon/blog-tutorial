@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <!--
     Licensed to the Apache Software Foundation (ASF) under one or more
     contributor license agreements.  See the NOTICE file distributed with
@@ -14,10 +18,15 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-# Kamino blog tutorial
+    <parent>
+        <artifactId>java-annotations</artifactId>
+        <groupId>fr.openobject.blog.tutorial</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
 
+    <artifactId>java-annotations-defintion</artifactId>
+    <name>Kamino :: Blog :: Tutorial :: Java Annotations :: Definition</name>
+    <packaging>bundle</packaging>
 
-
-## List
-
-* [Java-annotations]([https://github.com/fpapon/blog-tutorial/java-annotations]) : creating and using Java annotations
+</project>

@@ -1,0 +1,36 @@
+
+*****************************************************
+Summary
+-------
+Generated at: 2019-11-24T17:28:57+01:00
+
+Notes: 1
+Binaries: 0
+Archives: 0
+Standards: 9
+
+Apache Licensed: 9
+Generated Documents: 0
+
+JavaDocs are generated, thus a license header is optional.
+Generated files do not require license headers.
+
+0 Unknown Licenses
+
+*****************************************************
+  Files with Apache License headers will be marked AL
+  Binary files (which do not require any license headers) will be marked B
+  Compressed archives will be marked A
+  Notices, licenses etc. will be marked N
+  AL    pom.xml
+  N     LICENSE
+  AL    java-annotations/pom.xml
+  AL    java-annotations/java-annotations-definition/pom.xml
+  AL    java-annotations/java-annotations-definition/src/main/java/fr/openobject/blog/tutorial/java/annotations/api/Log.java
+  AL    java-annotations/java-annotations-definition/src/main/java/fr/openobject/blog/tutorial/java/annotations/api/LogProcessor.java
+  AL    java-annotations/java-annotations-usage/pom.xml
+  AL    java-annotations/java-annotations-usage/src/main/java/fr/openobject/blog/tutorial/java/annotations/usage/AnnotationTest.java
+  AL    java-annotations/java-annotations-usage/src/main/java/fr/openobject/blog/tutorial/java/annotations/usage/MyClass.java
+  AL    README.md
+ 
+*****************************************************
