@@ -21,14 +21,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>tutorial</artifactId>
-        <groupId>fr.openobject.java.labs</groupId>
+        <groupId>fr.openobject.blog.tutorial</groupId>
+        <artifactId>parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <groupId>fr.openobject.blog.tutorial</groupId>
     <artifactId>java-annotations</artifactId>
-    <version>1.0.0</version>
 
     <name>Kamino :: Blog :: Tutorial :: Java Annotations</name>
     <packaging>pom</packaging>

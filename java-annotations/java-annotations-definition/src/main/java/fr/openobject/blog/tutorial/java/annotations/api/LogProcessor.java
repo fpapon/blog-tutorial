@@ -16,21 +16,28 @@
  */
 package fr.openobject.blog.tutorial.java.annotations.api;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.element.TypeElement;
+import javax.tools.Diagnostic;
 
-@SupportedAnnotationTypes({"fr.openobject.blog.tutorial.java.annotations.api.Log"})
 public class LogProcessor extends AbstractProcessor {
+
+    @Override
+    public Set<String> getSupportedAnnotationTypes() {
+        Set<String> set = new HashSet<>();
+        set.add(Log.class.getName());
+        return set;
+    }
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         annotations.forEach(typeElement ->
                 roundEnv.getElementsAnnotatedWith(typeElement).forEach(element -> {
                         Log annotation = element.getAnnotation(Log.class);
-                        System.out.println(String.join(element.getSimpleName(), " :" , annotation.level()));
+                        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, String.join(element.getSimpleName(), " :" , annotation.level()));
                 }));
         return true;
     }
