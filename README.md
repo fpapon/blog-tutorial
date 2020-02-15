@@ -16,8 +16,8 @@
 -->
 # Kamino blog tutorial
 
+## List
 
-
-## List
-
-* [Java-annotations]([https://github.com/fpapon/blog-tutorial/java-annotations]) : creating and using Java annotations
+* [Java Annotations]([https://github.com/fpapon/blog-tutorial/java-annotations]) : creating and using Java annotations
+* [CDI]([https://github.com/fpapon/blog-tutorial/cdi]) : using CDI in standalone application
+* [Apache Ignite]([https://github.com/fpapon/blog-tutorial/ignite]) : using Apache Ignite in OSGi
