@@ -48,7 +48,7 @@ public class IgniteMapLocal {
         cacheConfiguration.setCacheMode(CacheMode.PARTITIONED);
         cacheConfiguration.setWriteSynchronizationMode(CacheWriteSynchronizationMode.FULL_SYNC);
         cacheConfiguration.setIndexedTypes(String.class, ApiPojo.class);
-        cacheConfiguration.setDataRegionName("galaxyLocalDevRegion");
+        cacheConfiguration.setDataRegionName("openobjectLocalDevRegion");
 
         // tcp discovery configuration
         TcpDiscoverySpi tcpDiscoverySpi = new TcpDiscoverySpi();

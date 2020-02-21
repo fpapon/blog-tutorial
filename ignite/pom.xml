@@ -152,7 +152,7 @@
                             org.tartarus.snowball.ext.*,
                             org.jsr166.*
                         </Private-Package>
-                        <Export-Package>com.yupiik.galaxy.ignite.api</Export-Package>
+                        <Export-Package>fr.openobject.blog.tutorial.ignite.api</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>

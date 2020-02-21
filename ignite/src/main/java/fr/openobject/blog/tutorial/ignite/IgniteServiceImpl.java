@@ -57,14 +57,14 @@ public class IgniteServiceImpl implements IgniteService {
 
     @Activate
     public void activate(ComponentContext componentContext) throws Exception {
-        logger.info("Galaxy :: starting Ignite instance...");
+        logger.info("starting Ignite instance...");
         Dictionary<String, Object> properties = componentContext.getProperties();
 
         configuration = new IgniteConfiguration();
         instanceMode = getProperty(properties, "ignite.instance.mode", "server");
-        String dataRegionName = getProperty(properties, "ignite.cluster.data.region.name", "galaxyLocalRegion");
+        String dataRegionName = getProperty(properties, "ignite.cluster.data.region.name", "openobjectLocalRegion");
         String workingDirectory = getProperty(properties, "ignite.cluster.working.directory", System.getProperty("karaf.data", "/tmp").concat("/ignite-").concat(instanceMode));
-        String clusterName = getProperty(properties, "ignite.cluster.instance.name", "galaxyLocalInstance");
+        String clusterName = getProperty(properties, "ignite.cluster.instance.name", "openobjectLocalInstance");
         String discoveryAddresses = getProperty(properties, "ignite.cluster.discovery.addresses", "127.0.0.1");
         String discoveryLocalAddresses = getProperty(properties, "ignite.cluster.discovery.local.addresses", "127.0.0.1");
         String discoveryLocalPort = getProperty(properties, "ignite.cluster.discovery.local.port", "48500");
@@ -126,6 +126,7 @@ public class IgniteServiceImpl implements IgniteService {
 
     @Override
     public void stop() {
+        logger.info("stopping Ignite instance...");
         if (ignite != null) ignite.close();
     }
 }
