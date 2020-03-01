@@ -33,6 +33,9 @@
     <properties>
         <apache.ignite.version>2.7.6</apache.ignite.version>
         <apache.derby.version>10.15.1.3</apache.derby.version>
+        <osgi.version>7.0.0</osgi.version>
+        <osgi.compendium.version>7.0.0</osgi.compendium.version>
+        <osgi.enterprise.version>6.0.0</osgi.enterprise.version>
     </properties>
 
     <dependencies>
