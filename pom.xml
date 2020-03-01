@@ -79,6 +79,7 @@
         <module>ignite</module>
         <module>cdi</module>
         <module>karaf-custom-distribution</module>
+        <module>activemq-docker</module>
     </modules>
 
     <dependencyManagement>
