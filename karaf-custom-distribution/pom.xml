@@ -29,6 +29,8 @@
 
     <artifactId>karaf-custom-distribution</artifactId>
     <name>Kamino :: Blog :: Tutorial :: Karaf :: Customer distribution</name>
+    <packaging>karaf-assembly</packaging>
+
     <properties>
         <karaf.runtime.version>4.3.0.RC1</karaf.runtime.version>
         <decanter.version>2.2.0</decanter.version>
@@ -63,6 +65,12 @@
             <classifier>features</classifier>
             <type>xml</type>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
