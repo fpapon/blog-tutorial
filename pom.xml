@@ -80,6 +80,7 @@
         <module>cdi</module>
         <module>karaf-custom-distribution</module>
         <module>activemq-docker</module>
+        <module>meecrowave</module>
     </modules>
 
     <dependencyManagement>
@@ -117,8 +118,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

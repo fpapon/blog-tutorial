@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!--
+        Licensed to the Apache Software Foundation (ASF) under one or more
+        contributor license agreements.  See the NOTICE file distributed with
+        this work for additional information regarding copyright ownership.
+        The ASF licenses this file to You under the Apache License, Version 2.0
+        (the "License"); you may not use this file except in compliance with
+        the License.  You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+    -->
+
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>fr.openobject.blog.tutorial</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>meecrowave</artifactId>
+    <name>Kamino :: Blog :: Tutorial :: Meecrowave</name>
+
+    <properties>
+        <meecrowave.version>1.2.9</meecrowave.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.meecrowave</groupId>
+            <artifactId>meecrowave-specs-api</artifactId>
+            <version>${meecrowave.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.meecrowave</groupId>
+            <artifactId>meecrowave-core</artifactId>
+            <version>${meecrowave.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.meecrowave</groupId>
+            <artifactId>meecrowave-junit</artifactId>
+            <version>${meecrowave.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.meecrowave</groupId>
+                <artifactId>meecrowave-maven-plugin</artifactId>
+                <version>${meecrowave.version}</version>
+                <configuration>
+                    <buildDirectory>${project.build.directory}/assembly</buildDirectory>
+                    <keepExplodedFolder>true</keepExplodedFolder>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>1.8.0</version>
+                <configuration>
+                    <allowInsecureRegistries>true</allowInsecureRegistries>
+                    <from>
+                        <image>openjdk:11-jre-slim</image>
+                    </from>
+                    <to>
+                        <image>fpaponapache.azurecr.io/fpaponapache/meecrowave-custom-distrib:${project.version}</image>
+                        <auth>
+                            <username>fpaponapache</username>
+                            <password></password>
+                        </auth>
+                    </to>
+                    <container>
+                        <entrypoint>
+                            <entrypoint>/meecrowave-distribution/bin/meecrowave.sh</entrypoint>
+                            <entrypoint>run</entrypoint>
+                        </entrypoint>
+                        <workingDirectory>/meecrowave-distribution</workingDirectory>
+                        <ports>
+                            <port>8080</port>
+                        </ports>
+                    </container>
+                    <extraDirectories>
+                        <paths>
+                            <path>target/assembly</path>
+                        </paths>
+                        <permissions>
+                            <permission>
+                                <file>/meecrowave-distribution/bin/meecrowave.sh</file>
+                                <mode>755</mode>
+                            </permission>
+                        </permissions>
+                    </extraDirectories>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
