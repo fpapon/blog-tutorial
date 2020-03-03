@@ -123,7 +123,7 @@
                 <configuration>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
                     <from>
-                        <image>openjdk:alpine</image>
+                        <image>adoptopenjdk/openjdk11:alpine-jre</image>
                     </from>
                     <to>
                         <image>fpaponapache.azurecr.io/fpaponapache/karaf-custom-distrib:${project.version}</image>

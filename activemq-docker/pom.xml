@@ -91,13 +91,13 @@
                 <configuration>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
                     <from>
-                        <image>openjdk:alpine</image>
+                        <image>openjdk:8-jre-alpine</image>
                     </from>
                     <to>
                         <image>fpaponapache.azurecr.io/fpaponapache/activemq-custom-distrib:${project.version}</image>
                         <auth>
                             <username>fpaponapache</username>
-                            <password>hjNjCyee7cW=7GQl/2a7+XWniCcQfvBr</password>
+                            <password></password>
                         </auth>
                     </to>
                     <container>

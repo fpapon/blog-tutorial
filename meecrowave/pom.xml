@@ -77,7 +77,7 @@
                 <configuration>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
                     <from>
-                        <image>openjdk:11-jre-slim</image>
+                        <image>adoptopenjdk/openjdk11:alpine-jre</image>
                     </from>
                     <to>
                         <image>fpaponapache.azurecr.io/fpaponapache/meecrowave-custom-distrib:${project.version}</image>
