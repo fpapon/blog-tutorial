@@ -46,6 +46,12 @@ public class CustomerEndpoint {
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAll() {
+        return Response.ok(memoryStorage.values()).build();
+    }
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
