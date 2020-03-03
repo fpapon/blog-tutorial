@@ -16,14 +16,17 @@
  */
 package fr.openobject.blog.tutorial.meecrowave;
 
-import java.util.UUID;
+import fr.openobject.blog.tutorial.meecrowave.model.Address;
+import fr.openobject.blog.tutorial.meecrowave.model.Customer;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
+import javax.ws.rs.core.Response;
 import org.apache.meecrowave.Meecrowave;
 import org.apache.meecrowave.junit.MonoMeecrowave;
 import org.apache.meecrowave.testing.ConfigurationInject;
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -34,14 +37,37 @@ public class CustomerTest {
     private Meecrowave.Builder configuration;
 
     @Test
-    public void findCustomer() {
+    public void saveAndFindCustomer() {
         final Client client = ClientBuilder.newClient();
         try {
-            String id = UUID.randomUUID().toString();
-            assertEquals(id, client.target("http://localhost:" + configuration.getHttpPort())
-                    .path("tutorial/customer/".concat(id))
+            Customer customer = new Customer();
+            customer.setFirstname("Obiwan");
+            customer.setLastname("Kenobi");
+            customer.setNationalId("123451347665");
+            customer.setAddress(new Address());
+            customer.getAddress().setRoadNumber("245");
+            customer.getAddress().setRoadName("Liberty St");
+            customer.getAddress().setExtra1("Floor 1");
+            customer.getAddress().setExtra2("Apt 23");
+            customer.getAddress().setZipCode("CA-94114");
+            customer.getAddress().setCity("San Francisco");
+            customer.getAddress().setCountry("USA");
+
+            Response reponse = client.target("http://localhost:" + configuration.getHttpPort())
+                    .path("tutorial/customer")
                     .request(APPLICATION_JSON_TYPE)
-                    .get(String.class));
+                    .post(Entity.json(customer));
+            Assert.assertNotNull(reponse.getEntity());
+            String customerId = Customer.class.cast(reponse.getEntity()).getId();
+            Assert.assertNotNull(customerId);
+
+            Customer getCustomer = client.target("http://localhost:" + configuration.getHttpPort())
+                    .path("tutorial/customer/".concat(customerId))
+                    .request(APPLICATION_JSON_TYPE)
+                    .get(Customer.class);
+            Assert.assertNotNull(getCustomer);
+            Assert.assertEquals(customerId, getCustomer.getId());
+
         } finally {
             client.close();
         }

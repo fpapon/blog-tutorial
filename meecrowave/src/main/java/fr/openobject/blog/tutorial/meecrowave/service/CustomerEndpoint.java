@@ -16,22 +16,45 @@
  */
 package fr.openobject.blog.tutorial.meecrowave.service;
 
+import fr.openobject.blog.tutorial.meecrowave.model.Customer;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @ApplicationScoped
 @Path("customer")
 public class CustomerEndpoint {
 
+    private final static Map<String, Customer> memoryStorage = new HashMap<>();
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public String find(@PathParam("id") String id) {
-        return id;
+    public Response find(@PathParam("id") String id) {
+        return Optional.ofNullable(memoryStorage.get(id))
+                .map(customer -> Response.ok(customer).build())
+                .orElse(Response.status(Response.Status.NOT_FOUND).build());
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response save(Customer customer) {
+        customer.setId(UUID.randomUUID().toString());
+        memoryStorage.put(customer.getId(), customer);
+        return Optional.ofNullable(memoryStorage.get(customer.getId()))
+                .map(savedCustomer -> Response.ok(savedCustomer).build())
+                .orElse(Response.status(Response.Status.INTERNAL_SERVER_ERROR).build());
     }
 
 }
