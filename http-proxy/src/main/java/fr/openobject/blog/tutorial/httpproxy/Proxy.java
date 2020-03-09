@@ -10,9 +10,9 @@ import io.netty.handler.logging.LoggingHandler;
 
 public class Proxy {
 
-    static final int LOCAL_PORT = Integer.parseInt(System.getProperty("localPort", "80"));
+    static final int LOCAL_PORT = Integer.parseInt(System.getProperty("localPort", "8282"));
     static final String REMOTE_HOST = System.getProperty("remoteHost", "localhost");
-    static final int REMOTE_PORT = Integer.parseInt(System.getProperty("remotePort", "8080"));
+    static final int REMOTE_PORT = Integer.parseInt(System.getProperty("remotePort", "61616"));
 
     public static void main(String[] args) throws Exception {
         System.err.println("Proxying *:" + LOCAL_PORT + " to " + REMOTE_HOST + ':' + REMOTE_PORT + " ...");
