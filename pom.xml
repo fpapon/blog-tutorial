@@ -81,6 +81,7 @@
         <module>karaf-custom-distribution</module>
         <module>activemq-docker</module>
         <module>meecrowave</module>
+        <module>http-proxy</module>
     </modules>
 
     <dependencyManagement>
