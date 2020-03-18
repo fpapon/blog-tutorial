@@ -14,10 +14,17 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-# Kamino blog tutorial
+# Kamino blog 
+
+Github repository of the blog https://fpapon.github.io/
+
 
 ## List
 
-* [Java Annotations]([https://github.com/fpapon/blog-tutorial/java-annotations]) : creating and using Java annotations
-* [CDI]([https://github.com/fpapon/blog-tutorial/cdi]) : using CDI in standalone application
-* [Apache Ignite]([https://github.com/fpapon/blog-tutorial/ignite]) : using Apache Ignite in OSGi
+* [Java Annotations](https://github.com/fpapon/blog-tutorial/java-annotations): creating and using Java annotations.
+* [CDI](https://github.com/fpapon/blog-tutorial/cdi): using CDI in standalone application.
+* [Apache Ignite](https://github.com/fpapon/blog-tutorial/ignite): embedded Apache Ignite in Karaf.
+* [Apache ActiveMQ](https://github.com/fpapon/blog-tutorial/activemq-docker): create custom distribution of Apache ActiveMQ with Docker.
+* [Apache Karaf Custom](https://github.com/fpapon/blog-tutorial/kararf-custom-distribution): create custom distribution of Apache Karaf with Docker.
+* [Apache Meecrowave](https://github.com/fpapon/blog-tutorial/meecrowave): create microservices with Apache Meecrowave.
+* [Http-proxy](https://github.com/fpapon/blog-tutorial/http-proxy): create a tcp proxy with Netty. 
