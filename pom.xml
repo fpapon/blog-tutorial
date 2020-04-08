@@ -82,6 +82,8 @@
         <module>activemq-docker</module>
         <module>meecrowave</module>
         <module>http-proxy</module>
+<!--        <module>karaf-microservices</module>-->
+        <module>tomcat-docker</module>
     </modules>
 
     <dependencyManagement>
