@@ -21,7 +21,6 @@ Github repository of the blog https://fpapon.github.io/
 
 ## List
 
-* [Java Annotations](https://github.com/fpapon/blog-tutorial/java-annotations): creating and using Java annotations.
 * [CDI](https://github.com/fpapon/blog-tutorial/cdi): using CDI in standalone application.
 * [Apache Ignite](https://github.com/fpapon/blog-tutorial/ignite): embedded Apache Ignite in Karaf.
 * [Apache ActiveMQ](https://github.com/fpapon/blog-tutorial/activemq-docker): create custom distribution of Apache ActiveMQ with Docker.
