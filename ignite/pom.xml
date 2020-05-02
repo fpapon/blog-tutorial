@@ -146,7 +146,7 @@
                             *
                         </Import-Package>
                         <Private-Package>
-                            com.yupiik.galaxy.ignite,
+                            fr.openobject.blog.tutorial.ignite,
                             org.apache.ignite.*,
                             javax.cache.*,
                             org.apache.lucene.*,
