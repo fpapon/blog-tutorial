@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--
+        Licensed to the Apache Software Foundation (ASF) under one or more
+        contributor license agreements.  See the NOTICE file distributed with
+        this work for additional information regarding copyright ownership.
+        The ASF licenses this file to You under the Apache License, Version 2.0
+        (the "License"); you may not use this file except in compliance with
+        the License.  You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+    -->
+    <parent>
+        <artifactId>karaf-microservices-runtime</artifactId>
+        <groupId>fr.openobject.blog.tutorial</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>karaf-microservices-runtime-distribution</artifactId>
+    <packaging>karaf-assembly</packaging>
+    <name>Kamino :: Blog :: Tutorial :: Karaf microservices :: Runtime :: Distribution</name>
+
+    <properties>
+        <karaf.runtime.version>4.3.0.RC1</karaf.runtime.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>framework</artifactId>
+            <version>${karaf.runtime.version}</version>
+            <type>kar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>framework</artifactId>
+            <version>${karaf.runtime.version}</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>standard</artifactId>
+            <version>${karaf.runtime.version}</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>enterprise</artifactId>
+            <version>${karaf.runtime.version}</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf.karaf</groupId>
+            <artifactId>apache-cxf</artifactId>
+            <version>${cxf.version}</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.openobject.blog.tutorial</groupId>
+            <artifactId>karaf-microservices-runtime-features</artifactId>
+            <version>${project.version}</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>package</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.karaf.tooling</groupId>
+                <artifactId>karaf-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <finalName>${project.artifactId}</finalName>
+                    <bootFeatures>
+                        <feature>wrap</feature>
+                        <feature>bundle</feature>
+                        <feature>config</feature>
+                        <feature>system</feature>
+                        <feature>feature</feature>
+                        <feature>package</feature>
+                        <feature>log</feature>
+                        <feature>ssh</feature>
+                        <feature>instance</feature>
+                        <feature>shell</feature>
+                        <feature>management</feature>
+                        <feature>service</feature>
+                        <feature>jaas</feature>
+                        <feature>deployer</feature>
+                        <feature>diagnostic</feature>
+                        <feature>scr</feature>
+                        <feature>http</feature>
+                        <feature>war</feature>
+                        <feature>cxf-jaxrs</feature>
+                        <feature>cxf-rs-security-cors</feature>
+                        <feature>cxf-rs-description-openapi-v3</feature>
+                        <feature>karaf-microservices</feature>
+                    </bootFeatures>
+                    <installedFeatures>
+                        <feature>aries-blueprint</feature>
+                        <feature>shell-compat</feature>
+                    </installedFeatures>
+                    <startupFeatures>
+                        <feature>eventadmin</feature>
+                    </startupFeatures>
+                    <archiveTarGz>false</archiveTarGz>
+                    <archiveZip>false</archiveZip>
+                    <workDirectory>${project.build.directory}/assembly/karaf</workDirectory>
+                    <pathPrefix>karaf</pathPrefix>
+                    <writeProfiles>true</writeProfiles>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>1.8.0</version>
+                <configuration>
+                    <allowInsecureRegistries>true</allowInsecureRegistries>
+                    <from>
+                        <image>adoptopenjdk/openjdk11:alpine-jre</image>
+                    </from>
+                    <to>
+                        <image>fpaponapache.azurecr.io/fpaponapache/karaf-microservices-distrib:${project.version}</image>
+                        <auth>
+                            <username>fpaponapache</username>
+                            <password></password>
+                        </auth>
+                    </to>
+                    <container>
+                        <entrypoint>
+                            <entrypoint>/karaf/bin/karaf</entrypoint>
+                            <entrypoint>run</entrypoint>
+                        </entrypoint>
+                        <workingDirectory>/karaf</workingDirectory>
+                        <ports>
+                            <port>8101</port>
+                            <port>1099</port>
+                            <port>44444</port>
+                            <port>8181</port>
+                        </ports>
+                    </container>
+                    <extraDirectories>
+                        <paths>
+                            <path>target/assembly</path>
+                        </paths>
+                        <permissions>
+                            <permission>
+                                <file>/karaf/bin/karaf</file>
+                                <mode>755</mode>
+                            </permission>
+                        </permissions>
+                    </extraDirectories>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

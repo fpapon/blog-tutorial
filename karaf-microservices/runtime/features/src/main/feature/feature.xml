@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<features name="karaf-microservices-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.6.0"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.6.0">
+
+    <feature name="karaf-microservices" version="${project.version}" description="Karaf microservices main feature">
+        <feature version="${project.version}">karaf-microservices-api</feature>
+        <feature version="${project.version}">karaf-microservices-datasource</feature>
+        <feature version="${project.version}">karaf-microservices-server</feature>
+        <feature version="${project.version}">karaf-microservices-services</feature>
+        <feature version="${project.version}">karaf-microservices-endpoints</feature>
+    </feature>
+
+	<feature name="karaf-microservices-api" version="${project.version}" description="Karaf microservices API">
+		<feature>eventadmin</feature>
+		<feature>scr</feature>
+        <feature>config</feature>
+		<bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-api/${project.version}</bundle>
+	</feature>
+
+	<feature name="karaf-microservices-datasource" description="Karaf microservices Storage Datasource"  version="${project.version}">
+        <feature>jndi</feature>
+        <feature>pax-jdbc-config</feature>
+        <feature>pax-jdbc-postgresql</feature>
+        <feature>pax-jdbc-pool-hikaricp</feature>
+        <feature>jdbc</feature>
+        <feature dependency="true">transaction</feature>
+        <feature dependency="true">aries-blueprint</feature>
+        <feature version="[2,3)">jpa</feature>
+        <feature version="[2,3)">eclipselink</feature>
+
+        <config name="org.ops4j.datasource-karafmicroservices">
+            osgi.jdbc.driver.class=org.postgresql.Driver
+            dataSourceName=jdbc/karaf-microservices
+            databaseName=karaf-microservices
+            serverName=172.17.0.2
+            portNumber=5432
+            user=karaf-microservices
+            password=karaf-microservices
+        </config>
+		<capability>
+			osgi.service;objectClass=javax.sql.DataSource;effective:=active;osgi.jndi.service.name=jdbc/karaf-microservices
+		</capability>
+	</feature>
+
+    <feature name="karaf-microservices-server" version="${project.version}" description="Karaf microservices server">
+        <feature version="${project.version}">karaf-microservices-api</feature>
+        <feature version="${cxf.version}">cxf-jaxrs</feature>
+        <feature version="${cxf.version}">cxf-rs-security-cors</feature>
+        <feature version="${cxf.version}">cxf-rs-description-openapi-v3</feature>
+
+        <bundle dependency="true">mvn:javax.activation/javax.activation-api/${javax.activation}</bundle>
+        <bundle dependency="true">mvn:com.sun.activation/javax.activation/${javax.activation}</bundle>
+        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-json_1.1_spec/${geronimo.jsonspec.version}</bundle>
+
+        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-core/${jackson.version}</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-databind/${jackson.version}</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson.version}</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson.version}</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
+
+        <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-server/${project.version}</bundle>
+    </feature>
+
+    <feature name="karaf-microservices-endpoints" version="${project.version}" description="Karaf microservices endpoints">
+        <config name="fr.openobject.blog.tutorial.karaf.microservices.endpoints.customer.identity">
+            #
+            # customer-identity endpoint
+            #
+        </config>
+        <feature>karaf-microservices-server</feature>
+        <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-endpoints-customer-identity/${project.version}</bundle>
+    </feature>
+
+	<feature name="karaf-microservices-services" description="Karaf microservices services" version="${project.version}">
+
+        <config name="fr.openobject.blog.tutorial.karaf.microservices.services.customer">
+            #
+            # customer service
+            #
+        </config>
+
+        <feature version="${project.version}">karaf-microservices-api</feature>
+        <feature version="${project.version}">karaf-microservices-datasource</feature>
+
+        <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-services-customer-api/${project.version}</bundle>
+        <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-services-customer-impl/${project.version}</bundle>
+	</feature>
+
+</features>
