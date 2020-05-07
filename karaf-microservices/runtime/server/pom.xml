@@ -20,15 +20,15 @@
         limitations under the License.
     -->
     <parent>
-        <artifactId>karaf-microservices</artifactId>
+        <artifactId>karaf-microservices-runtime</artifactId>
         <groupId>fr.openobject.blog.tutorial</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>karaf-microservices-server</artifactId>
+    <artifactId>karaf-microservices-runtime-server</artifactId>
     <packaging>bundle</packaging>
-    <name>Kamino :: Blog :: Tutorial :: Karaf microservices :: Server</name>
+    <name>Kamino :: Blog :: Tutorial :: Karaf microservices :: Runtime :: Server</name>
 
     <dependencies>
         <dependency>

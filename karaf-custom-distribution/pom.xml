@@ -28,7 +28,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>karaf-custom-distribution</artifactId>
-    <name>Kamino :: Blog :: Tutorial :: Karaf :: Customer distribution</name>
+    <name>Kamino :: Blog :: Tutorial :: Karaf :: Custom distribution</name>
     <packaging>karaf-assembly</packaging>
 
     <properties>
