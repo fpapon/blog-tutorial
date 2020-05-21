@@ -94,7 +94,6 @@
                     </to>
                     <container>
                         <useCurrentTimestamp>true</useCurrentTimestamp>
-                        <mainClass>org.apache.meecrowave.runner.Cli</mainClass>
                         <entrypoint>
                             <entrypoint>/meecrowave-distribution/bin/meecrowave.sh</entrypoint>
                             <entrypoint>run</entrypoint>
@@ -119,40 +118,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>dockerMain</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.google.cloud.tools</groupId>
-                        <artifactId>jib-maven-plugin</artifactId>
-                        <version>1.8.0</version>
-                        <configuration>
-                            <allowInsecureRegistries>true</allowInsecureRegistries>
-                            <from>
-                                <image>adoptopenjdk/openjdk11:alpine-jre</image>
-                            </from>
-                            <to>
-                                <image>fpaponapache.azurecr.io/fpaponapache/meecrowave-custom-distrib:${project.version}</image>
-                                <auth>
-                                    <username>fpaponapache</username>
-                                    <password></password>
-                                </auth>
-                            </to>
-                            <container>
-                                <useCurrentTimestamp>true</useCurrentTimestamp>
-                                <mainClass>org.apache.meecrowave.runner.Cli</mainClass>
-                                <ports>
-                                    <port>8080</port>
-                                </ports>
-                            </container>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>
