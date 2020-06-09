@@ -16,7 +16,10 @@
  */
 package fr.openobject.blog.tutorial.meecrowave.service;
 
+import org.eclipse.microprofile.config.Config;
+
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -28,6 +31,9 @@ import java.util.concurrent.ThreadLocalRandom;
 @ApplicationScoped
 @Path("notif")
 public class NotifEndpoint {
+
+    @Inject
+    private Config config;
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)

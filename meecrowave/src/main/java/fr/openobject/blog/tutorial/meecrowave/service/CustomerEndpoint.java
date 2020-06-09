@@ -17,10 +17,7 @@
 package fr.openobject.blog.tutorial.meecrowave.service;
 
 import fr.openobject.blog.tutorial.meecrowave.model.Customer;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -30,12 +27,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
 @ApplicationScoped
 @Path("customer")
 public class CustomerEndpoint {
 
-    private final static Map<String, Customer> memoryStorage = new HashMap<>();
+    private final Map<String, Customer> memoryStorage = new HashMap<>();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

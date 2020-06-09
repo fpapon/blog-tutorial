@@ -83,7 +83,6 @@
         <module>meecrowave</module>
         <module>http-proxy</module>
         <module>tomcat-docker</module>
-        <module>microprofile</module>
     </modules>
 
     <dependencyManagement>
