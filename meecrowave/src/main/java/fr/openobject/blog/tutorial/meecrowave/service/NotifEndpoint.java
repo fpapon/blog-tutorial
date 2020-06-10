@@ -20,31 +20,11 @@ import org.eclipse.microprofile.config.Config;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.concurrent.ThreadLocalRandom;
 
 @ApplicationScoped
-@Path("notif")
 public class NotifEndpoint {
 
     @Inject
     private Config config;
-
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.WILDCARD)
-    public Response notif() {
-        int number = ThreadLocalRandom.current().nextInt(1, 10);
-        if (number == 5) {
-            return Response.serverError().build();
-        } else {
-            return Response.status(Response.Status.CREATED).entity("{\"id\": "+number+"}").build();
-        }
-    }
 
 }

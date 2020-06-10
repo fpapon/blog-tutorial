@@ -17,8 +17,15 @@
 package fr.openobject.blog.tutorial.meecrowave.service;
 
 import fr.openobject.blog.tutorial.meecrowave.model.Customer;
+import org.eclipse.microprofile.config.Config;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -36,12 +43,21 @@ import java.util.UUID;
 @Path("customer")
 public class CustomerEndpoint {
 
+    @Inject
+    private Config config;
+
     private final Map<String, Customer> memoryStorage = new HashMap<>();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public Response find(@PathParam("id") String id) {
+    @Operation(summary = "Get customer by id")
+    @APIResponse(responseCode = "404", description = "Customer not found")
+    @APIResponse(description = "The customer",
+            responseCode = "200",
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
+                               schema = @Schema(implementation = Customer.class)))
+    public Response find(@Parameter(description = "The id of the customer to be fetched.", required = true) @PathParam("id") String id) {
         return Optional.ofNullable(memoryStorage.get(id))
                 .map(customer -> Response.ok(customer).build())
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());

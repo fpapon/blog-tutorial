@@ -18,17 +18,19 @@ package fr.openobject.blog.tutorial.meecrowave;
 
 import fr.openobject.blog.tutorial.meecrowave.model.Address;
 import fr.openobject.blog.tutorial.meecrowave.model.Customer;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
-import javax.ws.rs.core.Response;
 import org.apache.meecrowave.Meecrowave;
 import org.apache.meecrowave.junit.MonoMeecrowave;
 import org.apache.meecrowave.testing.ConfigurationInject;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.Response;
+
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 
 @RunWith(MonoMeecrowave.Runner.class)
 public class CustomerTest {
@@ -38,6 +40,21 @@ public class CustomerTest {
 
     @Test
     public void saveAndFindCustomer() {
+//        {
+//            "address": {
+//            "city": "San Francisco",
+//                    "country": "USA",
+//                    "extra1": "Floor 1",
+//                    "extra2": "Apt 23",
+//                    "roadName": "Liberty St",
+//                    "roadNumber": "245",
+//                    "zipCode": "CA-94114"
+//        },
+//            "firstname": "toto",
+//                "id": "e68bb189-80f2-4d43-bec0-f9c56b248ff3",
+//                "lastname": "titi",
+//                "nationalId": "12345654321"
+//        }
         final Client client = ClientBuilder.newClient();
         try {
             Customer customer = new Customer();
@@ -58,7 +75,7 @@ public class CustomerTest {
                     .request(APPLICATION_JSON_TYPE)
                     .post(Entity.json(customer));
             Assert.assertNotNull(reponse.getEntity());
-            String customerId = Customer.class.cast(reponse.getEntity()).getId();
+            String customerId = reponse.readEntity(Customer.class).getId();
             Assert.assertNotNull(customerId);
 
             Customer getCustomer = client.target("http://localhost:" + configuration.getHttpPort())
@@ -71,6 +88,11 @@ public class CustomerTest {
         } finally {
             client.close();
         }
+    }
+
+    @Test
+    public void healthCheck() {
+
     }
 
 }

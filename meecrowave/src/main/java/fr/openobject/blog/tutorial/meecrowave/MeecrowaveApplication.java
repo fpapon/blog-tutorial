@@ -16,12 +16,43 @@
  */
 package fr.openobject.blog.tutorial.meecrowave;
 
+import org.eclipse.microprofile.health.HealthCheck;
+import org.eclipse.microprofile.health.HealthCheckResponse;
+import org.eclipse.microprofile.health.Liveness;
+import org.eclipse.microprofile.health.Readiness;
+import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
+import org.eclipse.microprofile.openapi.annotations.info.Contact;
+import org.eclipse.microprofile.openapi.annotations.info.Info;
+
 import javax.enterprise.context.Dependent;
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Application;
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
+import java.lang.management.ThreadMXBean;
 
 @Dependent
 @ApplicationPath("tutorial")
+@OpenAPIDefinition(
+        info = @Info(title = "Customer API",
+                contact = @Contact(name = "Mr. X", email = "mrxyzufo@xxx.com"),
+                version = "1.0.0")
+)
 public class MeecrowaveApplication extends Application {
+
+    @Produces
+    @Liveness
+    HealthCheck checkMemory() {
+        MemoryMXBean mxbean = ManagementFactory.getMemoryMXBean();
+        return () -> HealthCheckResponse.named("heap-memory").state(mxbean.getHeapMemoryUsage().getUsed() < 0.9).build();
+    }
+
+    @Produces
+    @Readiness
+    HealthCheck checkCpu() {
+        ThreadMXBean mxbean = ManagementFactory.getThreadMXBean();
+        return () -> HealthCheckResponse.named("cpu-usage").state(mxbean.getCurrentThreadCpuTime() < 0.9).build();
+    }
 
 }
