@@ -36,7 +36,7 @@ import java.lang.management.ThreadMXBean;
 @ApplicationPath("tutorial")
 @OpenAPIDefinition(
         info = @Info(title = "Customer API",
-                contact = @Contact(name = "Mr. X", email = "mrxyzufo@xxx.com"),
+                contact = @Contact(name = "Francois Papon", email = "fpapon@github.com"),
                 version = "1.0.0")
 )
 public class MeecrowaveApplication extends Application {
