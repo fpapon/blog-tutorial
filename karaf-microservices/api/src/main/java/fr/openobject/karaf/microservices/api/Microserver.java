@@ -24,7 +24,6 @@ import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.openapi.OpenApiFeature;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public abstract class Microserver {
@@ -40,7 +39,6 @@ public abstract class Microserver {
         OpenApiFeature feature = new OpenApiFeature();
         feature.setScan(false);
         feature.setUseContextBasedConfig(true);
-        feature.setResourceClasses(Collections.singleton(serviceBean.getClass().getCanonicalName()));
         features.add(feature);
         bean.setFeatures(features);
         bean.setServiceBean(serviceBean);
