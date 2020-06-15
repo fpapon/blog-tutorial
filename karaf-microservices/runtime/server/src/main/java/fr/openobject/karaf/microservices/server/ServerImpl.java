@@ -19,6 +19,7 @@ package fr.openobject.karaf.microservices.server;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import fr.openobject.karaf.microservices.api.Microservice;
 import fr.openobject.karaf.microservices.api.Server;
+import org.apache.cxf.jaxrs.openapi.OpenApiFeature;
 import org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet;
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter;
 import org.osgi.framework.Constants;
@@ -41,6 +42,7 @@ import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.ws.rs.core.Application;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -120,10 +122,11 @@ public class ServerImpl extends Application implements Server  {
         final Dictionary<String, Object> restServletProps = new Hashtable<>();
         restServletProps.put("servlet-name", "microservices-servlet");
         this.restServlet = new CXFNonSpringJaxrsServlet(this);
-//        OpenApiFeature feature = new OpenApiFeature();
-//        feature.setScan(false);
-//        feature.setUseContextBasedConfig(true);
-//        restServletProps.put("jaxrs.features", feature);
+        OpenApiFeature feature = new OpenApiFeature();
+        feature.setScan(false);
+        feature.setUseContextBasedConfig(true);
+        feature.setResourceClasses(Collections.singleton("fr.openobject.karaf.microservices.endpoints.customer.CustomerIdentityEndpoint"));
+        restServletProps.put("jaxrs.features", feature);
         try {
             httpService.registerServlet(alias, restServlet, restServletProps, null);
         } catch (ServletException | NamespaceException e) {

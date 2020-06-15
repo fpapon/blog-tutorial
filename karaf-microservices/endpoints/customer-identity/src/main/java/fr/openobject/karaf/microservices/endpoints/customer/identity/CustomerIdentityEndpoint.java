@@ -46,8 +46,6 @@ import java.util.Collections;
 import java.util.Dictionary;
 
 @Path("/customer-identity")
-@Consumes({MediaType.APPLICATION_JSON})
-@Produces({MediaType.APPLICATION_JSON})
 @CrossOriginResourceSharing(allowAllOrigins = true, allowCredentials = true)
 @SecuritySchemes(@SecurityScheme(type = SecuritySchemeType.HTTP, scheme = "bearer"))
 @Component(immediate = true, service = Microservice.class)

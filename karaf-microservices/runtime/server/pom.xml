@@ -71,6 +71,14 @@
                 <version>4.2.1</version>
                 <extensions>true</extensions>
                 <inherited>true</inherited>
+                <configuration>
+                    <instructions>
+                        <Import-package>
+                            org.apache.cxf.jaxrs.openapi,
+                            *
+                        </Import-package>
+                    </instructions>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -30,9 +30,9 @@
     <packaging>pom</packaging>
     <name>Kamino :: Blog :: Tutorial :: Karaf microservices :: Runtime</name>
     <modules>
+        <module>server</module>
         <module>features</module>
         <module>distribution</module>
-        <module>server</module>
     </modules>
 
 </project>

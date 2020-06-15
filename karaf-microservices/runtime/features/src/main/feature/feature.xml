@@ -75,7 +75,7 @@
         <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson.version}</bundle>
         <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
 
-        <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-server/${project.version}</bundle>
+        <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-runtime-server/${project.version}</bundle>
     </feature>
 
     <feature name="karaf-microservices-endpoints" version="${project.version}" description="Karaf microservices endpoints">

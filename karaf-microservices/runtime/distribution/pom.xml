@@ -26,7 +26,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>karaf-microservices-runtime-distribution</artifactId>
-    <packaging>karaf-assembly</packaging>
     <name>Kamino :: Blog :: Tutorial :: Karaf microservices :: Runtime :: Distribution</name>
 
     <properties>
@@ -90,7 +89,16 @@
             <plugin>
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>karaf-maven-plugin</artifactId>
-                <extensions>true</extensions>
+                <extensions>false</extensions>
+                <executions>
+                    <execution>
+                        <id>package</id>
+                        <goals>
+                            <goal>assembly</goal>
+                            <goal>archive</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <finalName>${project.artifactId}</finalName>
                     <bootFeatures>
@@ -124,8 +132,8 @@
                     <startupFeatures>
                         <feature>eventadmin</feature>
                     </startupFeatures>
-                    <archiveTarGz>false</archiveTarGz>
-                    <archiveZip>false</archiveZip>
+                    <archiveTarGz>true</archiveTarGz>
+                    <archiveZip>true</archiveZip>
                     <workDirectory>${project.build.directory}/assembly/karaf</workDirectory>
                     <pathPrefix>karaf</pathPrefix>
                     <writeProfiles>true</writeProfiles>
