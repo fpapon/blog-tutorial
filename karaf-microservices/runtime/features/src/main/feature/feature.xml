@@ -22,7 +22,6 @@
     <feature name="karaf-microservices" version="${project.version}" description="Karaf microservices main feature">
         <feature version="${project.version}">karaf-microservices-api</feature>
         <feature version="${project.version}">karaf-microservices-datasource</feature>
-        <feature version="${project.version}">karaf-microservices-server</feature>
         <feature version="${project.version}">karaf-microservices-services</feature>
         <feature version="${project.version}">karaf-microservices-endpoints</feature>
     </feature>
@@ -31,6 +30,20 @@
 		<feature>eventadmin</feature>
 		<feature>scr</feature>
         <feature>config</feature>
+        <feature version="${cxf.version}">cxf-jaxrs</feature>
+        <feature version="${cxf.version}">cxf-rs-security-cors</feature>
+        <feature version="${cxf.version}">cxf-rs-description-openapi-v3</feature>
+
+        <bundle dependency="true">mvn:javax.activation/javax.activation-api/${javax.activation}</bundle>
+        <bundle dependency="true">mvn:com.sun.activation/javax.activation/${javax.activation}</bundle>
+        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-json_1.1_spec/${geronimo.jsonspec.version}</bundle>
+
+        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-core/${jackson.version}</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-databind/${jackson.version}</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson.version}</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson.version}</bundle>
+        <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
+
 		<bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-api/${project.version}</bundle>
 	</feature>
 
@@ -59,33 +72,15 @@
 		</capability>
 	</feature>
 
-    <feature name="karaf-microservices-server" version="${project.version}" description="Karaf microservices server">
-        <feature version="${project.version}">karaf-microservices-api</feature>
-        <feature version="${cxf.version}">cxf-jaxrs</feature>
-        <feature version="${cxf.version}">cxf-rs-security-cors</feature>
-        <feature version="${cxf.version}">cxf-rs-description-openapi-v3</feature>
-
-        <bundle dependency="true">mvn:javax.activation/javax.activation-api/${javax.activation}</bundle>
-        <bundle dependency="true">mvn:com.sun.activation/javax.activation/${javax.activation}</bundle>
-        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-json_1.1_spec/${geronimo.jsonspec.version}</bundle>
-
-        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-core/${jackson.version}</bundle>
-        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-databind/${jackson.version}</bundle>
-        <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson.version}</bundle>
-        <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson.version}</bundle>
-        <bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
-
-        <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-runtime-server/${project.version}</bundle>
-    </feature>
-
     <feature name="karaf-microservices-endpoints" version="${project.version}" description="Karaf microservices endpoints">
         <config name="fr.openobject.blog.tutorial.karaf.microservices.endpoints.customer.identity">
             #
             # customer-identity endpoint
             #
         </config>
-        <feature>karaf-microservices-server</feature>
+        <feature>karaf-microservices-api</feature>
         <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-endpoints-customer-identity/${project.version}</bundle>
+        <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-endpoints-customer-address/${project.version}</bundle>
     </feature>
 
 	<feature name="karaf-microservices-services" description="Karaf microservices services" version="${project.version}">

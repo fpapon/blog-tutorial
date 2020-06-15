@@ -16,13 +16,12 @@
  */
 package fr.openobject.karaf.microservices.endpoints.customer.address;
 
+import fr.openobject.karaf.microservices.api.Microserver;
 import fr.openobject.karaf.microservices.api.Microservice;
 import fr.openobject.karaf.microservices.services.customer.api.CustomerService;
 import fr.openobject.karaf.microservices.services.customer.api.model.Address;
-import fr.openobject.karaf.microservices.services.customer.api.model.Customer;
-import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
-import io.swagger.v3.oas.annotations.security.SecurityScheme;
-import io.swagger.v3.oas.annotations.security.SecuritySchemes;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.servers.Server;
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
@@ -44,15 +43,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Dictionary;
 
-@Path("/customer-address")
-@Consumes({MediaType.APPLICATION_JSON})
-@Produces({MediaType.APPLICATION_JSON})
+@Path("/")
 @CrossOriginResourceSharing(allowAllOrigins = true, allowCredentials = true)
-@SecuritySchemes(@SecurityScheme(type = SecuritySchemeType.HTTP, scheme = "bearer"))
+@OpenAPIDefinition(
+        servers = @Server(url = "/cxf/customer-address")
+)
 @Component(immediate = true, service = Microservice.class)
-public class CustomerAddressEndpoint implements Microservice {
+public class CustomerAddressEndpoint extends Microserver implements Microservice {
 
-    private Logger logger = LoggerFactory.getLogger(CustomerAddressEndpoint.class);
+    private final Logger logger = LoggerFactory.getLogger(CustomerAddressEndpoint.class);
 
     private Dictionary<String, Object> properties;
 
@@ -61,12 +60,12 @@ public class CustomerAddressEndpoint implements Microservice {
     @Activate
     public void activate(ComponentContext componentContext) {
         this.properties = componentContext.getProperties();
-        //
+        super.activate("/customer-address", this);
     }
 
     @Deactivate
-    public void deactivate() {
-        //
+    public void deactivate() throws Exception {
+        super.deactivate();
     }
 
     @Path("/{customerId}")
@@ -74,9 +73,9 @@ public class CustomerAddressEndpoint implements Microservice {
     @Produces(MediaType.APPLICATION_JSON)
     public Response findCustomerAddress(@PathParam("customerId") String customerId) {
 
-        Customer customer = customerService.findById(customerId);
-        if (customer != null) {
-            return Response.ok(customer).build();
+        Address address = customerService.findCustomerAddress(customerId);
+        if (address != null) {
+            return Response.ok(address).build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }

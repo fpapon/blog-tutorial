@@ -50,7 +50,8 @@
                 <configuration>
                     <instructions>
                         <Import-package>
-                            fr.openobject.karaf.microservices.api
+                            fr.openobject.karaf.microservices.api,
+                            fr.openobject.karaf.microservices.server
                         </Import-package>
                     </instructions>
                 </configuration>

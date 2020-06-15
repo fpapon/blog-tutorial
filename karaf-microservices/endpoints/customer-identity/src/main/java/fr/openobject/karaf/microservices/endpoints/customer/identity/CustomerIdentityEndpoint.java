@@ -16,12 +16,12 @@
  */
 package fr.openobject.karaf.microservices.endpoints.customer.identity;
 
+import fr.openobject.karaf.microservices.api.Microserver;
 import fr.openobject.karaf.microservices.api.Microservice;
 import fr.openobject.karaf.microservices.services.customer.api.CustomerService;
 import fr.openobject.karaf.microservices.services.customer.api.model.Customer;
-import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
-import io.swagger.v3.oas.annotations.security.SecurityScheme;
-import io.swagger.v3.oas.annotations.security.SecuritySchemes;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.servers.Server;
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
@@ -41,17 +41,19 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Dictionary;
 
-@Path("/customer-identity")
+@Path("/")
 @CrossOriginResourceSharing(allowAllOrigins = true, allowCredentials = true)
-@SecuritySchemes(@SecurityScheme(type = SecuritySchemeType.HTTP, scheme = "bearer"))
+@OpenAPIDefinition(
+        servers = @Server(url = "/cxf/customer-identity")
+)
 @Component(immediate = true, service = Microservice.class)
-public class CustomerIdentityEndpoint implements Microservice {
+public class CustomerIdentityEndpoint extends Microserver implements Microservice {
 
-    private Logger logger = LoggerFactory.getLogger(CustomerIdentityEndpoint.class);
+    private final Logger logger = LoggerFactory.getLogger(CustomerIdentityEndpoint.class);
 
     private Dictionary<String, Object> properties;
 
@@ -60,21 +62,21 @@ public class CustomerIdentityEndpoint implements Microservice {
     @Activate
     public void activate(ComponentContext componentContext) {
         this.properties = componentContext.getProperties();
-        //
+        super.activate("/customer-identity", this);
     }
 
     @Deactivate
-    public void deactivate() {
-        //
+    @Override
+    public void deactivate() throws Exception {
+        super.deactivate();
     }
 
     @Path("/")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findAll() {
+    public Response findAllCustomers() {
 
-        Collection<Customer> customers = Collections.EMPTY_LIST;
-        customers.addAll(customerService.findAll());
+        Collection<Customer> customers = new ArrayList<>(customerService.findAll());
         if (!customers.isEmpty()) {
             return Response.ok(customerService.findAll()).build();
         } else {
@@ -85,7 +87,7 @@ public class CustomerIdentityEndpoint implements Microservice {
     @Path("/{customerId}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findById(@PathParam("customerId") String customerId) {
+    public Response findCustomerById(@PathParam("customerId") String customerId) {
 
         Customer customer = customerService.findById(customerId);
         if (customer != null) {
@@ -113,7 +115,7 @@ public class CustomerIdentityEndpoint implements Microservice {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateAppenderConfProperties(Customer customer) {
+    public Response updateCustomer(Customer customer) {
 
         customer = customerService.update(customer);
         if (customer != null) {

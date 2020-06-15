@@ -30,8 +30,8 @@
     <name>Kamino :: Blog :: Tutorial :: Karaf microservices</name>
     <modules>
         <module>api</module>
-        <module>endpoints</module>
         <module>services</module>
+        <module>endpoints</module>
         <module>runtime</module>
     </modules>
 
