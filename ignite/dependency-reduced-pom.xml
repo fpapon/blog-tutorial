@@ -71,7 +71,7 @@
                             !sun.nio.ch,
                             !sun.reflect,
                             *</Import-Package>
-            <Private-Package>com.yupiik.galaxy.ignite,
+            <Private-Package>fr.openobject.blog.tutorial.ignite,
                             org.apache.ignite.*,
                             javax.cache.*,
                             org.apache.lucene.*,
