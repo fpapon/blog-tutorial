@@ -80,4 +80,11 @@ public class CustomerEndpoint {
                 .orElse(Response.status(Response.Status.INTERNAL_SERVER_ERROR).build());
     }
 
+    @GET
+    @Path("config")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response config() {
+        return Response.ok(config.getValue("microprofile.config.message", String.class)).build();
+    }
+
 }
