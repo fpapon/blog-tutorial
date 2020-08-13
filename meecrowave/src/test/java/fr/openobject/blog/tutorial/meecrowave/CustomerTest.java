@@ -91,8 +91,19 @@ public class CustomerTest {
     }
 
     @Test
-    public void healthCheck() {
+    public void checkConfig() {
+        final Client client = ClientBuilder.newClient();
+        try {
+            String config = client.target("http://localhost:" + configuration.getHttpPort())
+                    .path("tutorial/customer/config")
+                    .request(APPLICATION_JSON_TYPE)
+                    .get(String.class);
+            Assert.assertNotNull(config);
+            Assert.assertEquals(config, "Message from META-INF config file");
 
+        } finally {
+            client.close();
+        }
     }
 
 }
