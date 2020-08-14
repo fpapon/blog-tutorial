@@ -84,6 +84,7 @@
         <module>http-proxy</module>
         <module>karaf-microservices</module>
         <module>tomcat-docker</module>
+        <module>kafka</module>
     </modules>
 
     <dependencyManagement>
@@ -119,12 +120,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <scope>test</scope>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
