@@ -28,3 +28,4 @@ Github repository of the blog https://fpapon.github.io/
 * [Apache Meecrowave](https://github.com/fpapon/blog-tutorial/meecrowave): create microservices with Apache Meecrowave.
 * [Http-proxy](https://github.com/fpapon/blog-tutorial/http-proxy): create a tcp proxy with Netty. 
 * [Apache Tomcat](https://github.com/fpapon/blog-tutorial/tomcat-docker): create custom distribution of Apache Tomcat with Docker. 
+* [Apache Kafka](https://github.com/fpapon/blog-tutorial/kafka): junit tests for Apache Kafka pub/sub with embedded broker.
