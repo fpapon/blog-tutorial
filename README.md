@@ -21,11 +21,11 @@ Github repository of the blog https://fpapon.github.io/
 
 ## List
 
-* [CDI](https://github.com/fpapon/blog-tutorial/cdi): using CDI in standalone application.
-* [Apache Ignite](https://github.com/fpapon/blog-tutorial/ignite): embedded Apache Ignite in Karaf.
-* [Apache ActiveMQ](https://github.com/fpapon/blog-tutorial/activemq-docker): create custom distribution of Apache ActiveMQ with Docker.
-* [Apache Karaf Custom](https://github.com/fpapon/blog-tutorial/kararf-custom-distribution): create custom distribution of Apache Karaf with Docker.
-* [Apache Meecrowave](https://github.com/fpapon/blog-tutorial/meecrowave): create microservices with Apache Meecrowave.
-* [Http-proxy](https://github.com/fpapon/blog-tutorial/http-proxy): create a tcp proxy with Netty. 
-* [Apache Tomcat](https://github.com/fpapon/blog-tutorial/tomcat-docker): create custom distribution of Apache Tomcat with Docker. 
-* [Apache Kafka](https://github.com/fpapon/blog-tutorial/kafka): junit tests for Apache Kafka pub/sub with embedded broker.
+* [CDI](https://github.com/fpapon/blog-tutorial/tree/master/cdi): using CDI in standalone application.
+* [Apache Ignite](https://github.com/fpapon/blog-tutorial/tree/master/ignite): embedded Apache Ignite in Karaf.
+* [Apache ActiveMQ](https://github.com/fpapon/blog-tutorial/tree/master/activemq-docker): create custom distribution of Apache ActiveMQ with Docker.
+* [Apache Karaf Custom](https://github.com/fpapon/blog-tutorial/tree/master/kararf-custom-distribution): create custom distribution of Apache Karaf with Docker.
+* [Apache Meecrowave](https://github.com/fpapon/blog-tutorial/tree/master/meecrowave): create microservices with Apache Meecrowave.
+* [Http-proxy](https://github.com/fpapon/blog-tutorial/tree/master/http-proxy): create a tcp proxy with Netty. 
+* [Apache Tomcat](https://github.com/fpapon/blog-tutorial/tree/master/tomcat-docker): create custom distribution of Apache Tomcat with Docker. 
+* [Apache Kafka](https://github.com/fpapon/blog-tutorial/tree/master/kafka): junit tests for Apache Kafka pub/sub with embedded broker.
