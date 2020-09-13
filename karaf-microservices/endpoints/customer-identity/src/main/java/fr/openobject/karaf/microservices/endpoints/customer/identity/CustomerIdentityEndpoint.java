@@ -16,18 +16,13 @@
  */
 package fr.openobject.karaf.microservices.endpoints.customer.identity;
 
-import fr.openobject.karaf.microservices.api.Microserver;
-import fr.openobject.karaf.microservices.api.Microservice;
 import fr.openobject.karaf.microservices.services.customer.api.CustomerService;
 import fr.openobject.karaf.microservices.services.customer.api.model.Customer;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.servers.Server;
-import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
-import org.osgi.service.component.ComponentContext;
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ServiceScope;
+import org.osgi.service.jaxrs.whiteboard.propertytypes.JaxrsApplicationSelect;
+import org.osgi.service.jaxrs.whiteboard.propertytypes.JaxrsResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,33 +38,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Dictionary;
 
-@Path("/")
-@CrossOriginResourceSharing(allowAllOrigins = true, allowCredentials = true)
-@OpenAPIDefinition(
-        servers = @Server(url = "/cxf/customer-identity")
-)
-@Component(immediate = true, service = Microservice.class)
-public class CustomerIdentityEndpoint extends Microserver implements Microservice {
+@Path("/identity")
+@Component(service = CustomerIdentityEndpoint.class, scope = ServiceScope.PROTOTYPE)
+@JaxrsResource
+@JaxrsApplicationSelect("(osgi.jaxrs.name=customer-application)")
+public class CustomerIdentityEndpoint {
 
     private final Logger logger = LoggerFactory.getLogger(CustomerIdentityEndpoint.class);
 
-    private Dictionary<String, Object> properties;
-
     @Reference private CustomerService customerService;
-
-    @Activate
-    public void activate(ComponentContext componentContext) {
-        this.properties = componentContext.getProperties();
-        super.activate("/customer-identity", this);
-    }
-
-    @Deactivate
-    @Override
-    public void deactivate() throws Exception {
-        super.deactivate();
-    }
 
     @Path("/")
     @GET

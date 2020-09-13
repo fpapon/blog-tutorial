@@ -14,8 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.openobject.karaf.microservices.api;
+package fr.openobject.karaf.microservices.services.customer.application;
 
-public interface Microservice {
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.jaxrs.whiteboard.propertytypes.JaxrsApplicationBase;
+import org.osgi.service.jaxrs.whiteboard.propertytypes.JaxrsName;
+
+import javax.ws.rs.core.Application;
+import java.util.HashSet;
+import java.util.Set;
+
+@Component(service = Application.class)
+@JaxrsName("customer-application")
+@JaxrsApplicationBase("customer")
+public class CustomerApplication extends Application {
+
+    @Override
+    public Set<Class<?>> getClasses() {
+        Set<Class<?>> classes = new HashSet<>();
+        classes.add(JacksonJsonProvider.class);
+        return classes;
+    }
 
 }

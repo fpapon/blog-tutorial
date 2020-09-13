@@ -62,13 +62,6 @@
             <type>xml</type>
         </dependency>
         <dependency>
-            <groupId>org.apache.cxf.karaf</groupId>
-            <artifactId>apache-cxf</artifactId>
-            <version>${cxf.version}</version>
-            <classifier>features</classifier>
-            <type>xml</type>
-        </dependency>
-        <dependency>
             <groupId>fr.openobject.blog.tutorial</groupId>
             <artifactId>karaf-microservices-runtime-features</artifactId>
             <version>${project.version}</version>
@@ -118,11 +111,6 @@
                         <feature>deployer</feature>
                         <feature>diagnostic</feature>
                         <feature>scr</feature>
-                        <feature>http</feature>
-                        <feature>war</feature>
-                        <feature>cxf-jaxrs</feature>
-                        <feature>cxf-rs-security-cors</feature>
-                        <feature>cxf-rs-description-openapi-v3</feature>
                         <feature>karaf-microservices</feature>
                     </bootFeatures>
                     <installedFeatures>

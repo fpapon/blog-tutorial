@@ -29,6 +29,7 @@
     <artifactId>karaf-microservices-runtime</artifactId>
     <packaging>pom</packaging>
     <name>Kamino :: Blog :: Tutorial :: Karaf microservices :: Runtime</name>
+
     <modules>
         <module>features</module>
         <module>distribution</module>
