@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.openobject.karaf.microservices.services.customer.application;
+package fr.openobject.karaf.microservices.applications.customer;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.osgi.service.component.annotations.Component;

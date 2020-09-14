@@ -103,7 +103,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomerAddress(String customerId, String addressId) {
-        this.customerAddressList.remove(customerId, this.customerAddressList.get(customerId).getId());
+        this.customerAddressList.remove(customerId, this.customerAddressList.get(customerId));
     }
 
 }
