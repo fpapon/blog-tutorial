@@ -26,7 +26,7 @@
         <feature version="${project.version}">karaf-microservices-endpoints</feature>
     </feature>
 
-	<feature name="karaf-microservices-api" version="${project.version}" description="Karaf microservices API">
+	<feature name="karaf-microservices-specs" version="${project.version}" description="Karaf microservices specs">
         <config name="org.apache.felix.http">
             ################################################################################
             #
@@ -130,7 +130,7 @@
             #
         </config>
 
-        <feature version="${project.version}">karaf-microservices-api</feature>
+        <feature version="${project.version}">karaf-microservices-specs</feature>
         <feature version="${project.version}">karaf-microservices-datasource</feature>
 
         <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-services-customer-api/${project.version}</bundle>
