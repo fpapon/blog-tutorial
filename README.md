@@ -21,7 +21,7 @@ Github repository of the blog https://fpapon.github.io/
 
 ## List
 
-* [CDI](https://github.com/fpapon/blog-tutorial/tree/master/cdi): using CDI in standalone application.
+* [CDI](https://github.com/fpapon/blog-tutorial/tree/master/cdi): using CDI in standalone application with Apache Openwebbeans.
 * [Apache Ignite](https://github.com/fpapon/blog-tutorial/tree/master/ignite): embedded Apache Ignite in Karaf.
 * [Apache ActiveMQ](https://github.com/fpapon/blog-tutorial/tree/master/activemq-docker): create custom distribution of Apache ActiveMQ with Docker.
 * [Apache Karaf Custom](https://github.com/fpapon/blog-tutorial/tree/master/kararf-custom-distribution): create custom distribution of Apache Karaf with Docker.
