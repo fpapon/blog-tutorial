@@ -20,7 +20,7 @@
 		  xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.6.0">
 
     <feature name="karaf-microservices" version="${project.version}" description="Karaf microservices main feature">
-        <feature version="${project.version}">karaf-microservices-api</feature>
+        <feature version="${project.version}">karaf-microservices-specs</feature>
         <feature version="${project.version}">karaf-microservices-datasource</feature>
         <feature version="${project.version}">karaf-microservices-services</feature>
         <feature version="${project.version}">karaf-microservices-endpoints</feature>
@@ -116,7 +116,7 @@
             #
         </config>
 
-        <feature>karaf-microservices-api</feature>
+        <feature>karaf-microservices-specs</feature>
 
         <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-endpoints-customer-identity/${project.version}</bundle>
         <bundle>mvn:fr.openobject.blog.tutorial/karaf-microservices-endpoints-customer-address/${project.version}</bundle>
