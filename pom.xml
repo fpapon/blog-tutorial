@@ -85,6 +85,7 @@
         <module>karaf-microservices</module>
         <module>tomcat-docker</module>
         <module>kafka</module>
+        <module>elasticsearch</module>
     </modules>
 
     <dependencyManagement>
