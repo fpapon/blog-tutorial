@@ -17,6 +17,8 @@
 package fr.openobject.blog.tutorial.meecrowave.service;
 
 import fr.openobject.blog.tutorial.meecrowave.model.Customer;
+import fr.openobject.blog.tutorial.meecrowave.persistence.entity.CustomerEntity;
+import fr.openobject.blog.tutorial.meecrowave.persistence.repository.CustomerDao;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -34,8 +36,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -46,7 +46,8 @@ public class CustomerEndpoint {
     @Inject
     private Config config;
 
-    private final Map<String, Customer> memoryStorage = new HashMap<>();
+    @Inject
+    private CustomerDao customerDao;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -58,15 +59,23 @@ public class CustomerEndpoint {
             content = @Content(mediaType = MediaType.APPLICATION_JSON,
                                schema = @Schema(implementation = Customer.class)))
     public Response find(@Parameter(description = "The id of the customer to be fetched.", required = true) @PathParam("id") String id) {
-        return Optional.ofNullable(memoryStorage.get(id))
-                .map(customer -> Response.ok(customer).build())
+        CustomerEntity entity = customerDao.find(id);
+        if (entity == null) return Response.status(Response.Status.NOT_FOUND).build();
+
+        Customer customer = new Customer();
+        customer.setId(entity.getId());
+        customer.setFirstname(entity.getFirstname());
+        customer.setLastname(entity.getLastname());
+        customer.setNationalId(entity.getNationalId());
+        return Optional.ofNullable(customer)
+                .map(c -> Response.ok(customer).build())
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
-        return Response.ok(memoryStorage.values()).build();
+        return Response.ok(customerDao.findAll()).build();
     }
 
     @POST
@@ -74,8 +83,13 @@ public class CustomerEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response save(Customer customer) {
         customer.setId(UUID.randomUUID().toString());
-        memoryStorage.put(customer.getId(), customer);
-        return Optional.ofNullable(memoryStorage.get(customer.getId()))
+        CustomerEntity entity = new CustomerEntity();
+        entity.setId(customer.getId());
+        entity.setLastname(customer.getLastname());
+        entity.setFirstname(customer.getFirstname());
+        entity.setNationalId(customer.getNationalId());
+        customerDao.insert(entity);
+        return Optional.ofNullable(customerDao.find(customer.getId()))
                 .map(savedCustomer -> Response.ok(savedCustomer).build())
                 .orElse(Response.status(Response.Status.INTERNAL_SERVER_ERROR).build());
     }
