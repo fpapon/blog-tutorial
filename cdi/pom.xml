@@ -31,7 +31,7 @@
     <name>Kamino :: Blog :: Tutorial :: CDI</name>
 
     <properties>
-        <apache.openwebbean.version>2.0.14</apache.openwebbean.version>
+        <apache.openwebbean.version>2.0.21</apache.openwebbean.version>
     </properties>
 
     <dependencies>
