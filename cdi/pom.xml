@@ -82,7 +82,15 @@
 
     <build>
         <plugins>
-            <plugin>
+            <plugin><!-- mvn exec:java -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <mainClass>fr.openobject.blog.tutorial.cdi.CdiApplication</mainClass>
+                </configuration>
+            </plugin>
+            <plugin><!-- mvn arthur:native-image -->
                 <groupId>org.apache.geronimo.arthur</groupId>
                 <artifactId>arthur-maven-plugin</artifactId>
                 <version>${apache.geronimo.arthur.version}</version>
