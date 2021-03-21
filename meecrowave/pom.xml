@@ -186,19 +186,6 @@
                             </toolProperties>
                         </configuration>
                     </execution>
-<!--                    <execution>-->
-<!--                        <id>h2</id>-->
-<!--                        <goals>-->
-<!--                            <goal>sql</goal>-->
-<!--                        </goals>-->
-<!--                        <phase>process-classes</phase>-->
-<!--                        <configuration>-->
-<!--                            <sqlFile>${project.build.outputDirectory}/openobject/ddl/database.ddl.h2.sql</sqlFile>-->
-<!--                            <toolProperties>-->
-<!--                                <DBDictionary>org.apache.openjpa.jdbc.sql.H2Dictionary</DBDictionary>-->
-<!--                            </toolProperties>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
                 </executions>
                 <configuration>
                     <includes>fr/openobject/blog/tutorial/meecrowave/persistence/entity/*.class</includes>
