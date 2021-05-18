@@ -31,7 +31,7 @@
     <name>Kamino :: Blog :: Tutorial :: Karaf :: Custom distribution</name>
 
     <properties>
-        <karaf.runtime.version>4.3.0</karaf.runtime.version>
+        <karaf.runtime.version>4.3.1</karaf.runtime.version>
         <decanter.version>2.2.0</decanter.version>
     </properties>
 
@@ -78,7 +78,7 @@
             <plugin>
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>karaf-maven-plugin</artifactId>
-                <version>4.3.0</version>
+                <version>4.3.1</version>
                 <extensions>false</extensions>
                 <executions>
                     <execution>
