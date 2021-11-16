@@ -32,7 +32,7 @@
 
     <properties>
         <apache.openwebbean.version>2.0.21</apache.openwebbean.version>
-        <apache.geronimo.arthur.version>1.0.2</apache.geronimo.arthur.version>
+        <apache.geronimo.arthur.version>1.0.3</apache.geronimo.arthur.version>
     </properties>
 
     <dependencies>
@@ -95,7 +95,7 @@
                 <artifactId>arthur-maven-plugin</artifactId>
                 <version>${apache.geronimo.arthur.version}</version>
                 <configuration>
-                    <graalVersion>21.0.0.2.r11</graalVersion>
+                    <graalVersion>21.2.0.r16</graalVersion>
                     <main>fr.openobject.blog.tutorial.cdi.CdiApplication</main>
                     <graalExtensions>
                         <graalExtension>openwebbeans</graalExtension>
