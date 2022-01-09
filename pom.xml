@@ -31,14 +31,10 @@
     <name>Kamino :: Blog :: Tutorial</name>
 
     <properties>
-        <slf4j.version>1.7.28</slf4j.version>
-        <junit.version>5.5.2</junit.version>
+        <slf4j.version>1.7.32</slf4j.version>
+        <junit.version>5.8.2</junit.version>
         <surefire.log.level>INFO</surefire.log.level>
     </properties>
-
-    <prerequisites>
-        <maven>3.5</maven>
-    </prerequisites>
 
     <repositories>
         <!-- Apache snapshots -->
