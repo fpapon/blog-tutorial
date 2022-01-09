@@ -87,7 +87,7 @@
             <plugin> <!-- mvn compile jib:dockerBuild -->
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>3.1.3</version>
+                <version>${jib.version}</version>
                 <configuration>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
                     <from>
