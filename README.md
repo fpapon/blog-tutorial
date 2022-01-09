@@ -14,6 +14,9 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
+
+[![Java CI with Maven](https://github.com/fpapon/blog-tutorial/actions/workflows/maven.yml/badge.svg)](https://github.com/fpapon/blog-tutorial/actions/workflows/maven.yml)
+
 # Kamino blog 
 
 Github repository of the blog https://fpapon.github.io/
