@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2019-Present - François Papon - Openobject.fr - https://openobject.fr
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+     https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <!--
-        Licensed to the Apache Software Foundation (ASF) under one or more
-        contributor license agreements.  See the NOTICE file distributed with
-        this work for additional information regarding copyright ownership.
-        The ASF licenses this file to You under the Apache License, Version 2.0
-        (the "License"); you may not use this file except in compliance with
-        the License.  You may obtain a copy of the License at
-
-           http://www.apache.org/licenses/LICENSE-2.0
-
-        Unless required by applicable law or agreed to in writing, software
-        distributed under the License is distributed on an "AS IS" BASIS,
-        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        See the License for the specific language governing permissions and
-        limitations under the License.
-    -->
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.openobject.blog.tutorial</groupId>
@@ -136,6 +137,62 @@
                 <configuration>
                     <source>11</source>
                     <target>11</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>4.2.rc2</version>
+                <executions>
+                    <execution>
+                        <id>check-license</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <inherited>false</inherited>
+                <configuration>
+                    <aggregate>true</aggregate>
+                    <inlineHeader><![CDATA[Copyright (c) ${year} - ${organization.name} - ${organization.url}
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+ https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+]]></inlineHeader>
+                    <properties>
+                        <organization.name>François Papon - Openobject.fr</organization.name>
+                        <organization.url>https://openobject.fr</organization.url>
+                        <year>2019-Present</year>
+                    </properties>
+                    <mapping>
+                        <adoc>DOUBLESLASH_STYLE</adoc>
+                    </mapping>
+                    <includes>
+                        <include>**/*.properties</include>
+                        <include>**/*.java</include>
+                        <include>**/*.xml</include>
+                        <include>**/*.yaml</include>
+                    </includes>
+                    <excludes>
+                        <exclude>LICENSE</exclude>
+                        <exclude>**/*.adoc</exclude>
+                        <exclude>**/*.idea</exclude>
+                        <exclude>**/target/**</exclude>
+                        <exclude>**/generated/**</exclude>
+                        <exclude>**/minisite/**</exclude>
+                        <exclude>**/file</exclude>
+                        <exclude>**/.m2/**</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
