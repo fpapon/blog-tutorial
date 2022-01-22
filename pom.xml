@@ -18,12 +18,6 @@
     -->
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.apache</groupId>
-        <artifactId>apache</artifactId>
-        <version>23</version>
-    </parent>
-
     <groupId>fr.openobject.blog.tutorial</groupId>
     <artifactId>parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
