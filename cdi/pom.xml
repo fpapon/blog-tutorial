@@ -30,8 +30,8 @@
     <name>Kamino :: Blog :: Tutorial :: CDI</name>
 
     <properties>
-        <apache.openwebbean.version>2.0.21</apache.openwebbean.version>
-        <apache.geronimo.arthur.version>1.0.3</apache.geronimo.arthur.version>
+        <apache.openwebbean.version>2.0.26</apache.openwebbean.version>
+        <apache.geronimo.arthur.version>1.0.5</apache.geronimo.arthur.version>
     </properties>
 
     <dependencies>
@@ -94,7 +94,7 @@
                 <artifactId>arthur-maven-plugin</artifactId>
                 <version>${apache.geronimo.arthur.version}</version>
                 <configuration>
-                    <graalVersion>21.2.0.r16</graalVersion>
+                    <graalVersion>22.1.0</graalVersion>
                     <main>fr.openobject.blog.tutorial.cdi.CdiApplication</main>
                     <graalExtensions>
                         <graalExtension>openwebbeans</graalExtension>
