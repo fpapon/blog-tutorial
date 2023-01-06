@@ -30,7 +30,7 @@
     <name>Kamino :: Blog :: Tutorial :: CDI</name>
 
     <properties>
-        <apache.openwebbean.version>2.0.26</apache.openwebbean.version>
+        <apache.openwebbean.version>2.0.27</apache.openwebbean.version>
         <apache.geronimo.arthur.version>1.0.5</apache.geronimo.arthur.version>
     </properties>
 
@@ -89,7 +89,11 @@
                     <mainClass>fr.openobject.blog.tutorial.cdi.CdiApplication</mainClass>
                 </configuration>
             </plugin>
-            <plugin><!-- mvn arthur:native-image -->
+            <plugin>
+                <!--
+                    mvn arthur:native-image for binaries
+                    mvn arthur:native-image arthur:docker for build docker image with binaries
+                -->
                 <groupId>org.apache.geronimo.arthur</groupId>
                 <artifactId>arthur-maven-plugin</artifactId>
                 <version>${apache.geronimo.arthur.version}</version>

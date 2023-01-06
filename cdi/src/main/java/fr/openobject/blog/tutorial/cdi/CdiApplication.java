@@ -16,16 +16,20 @@
 package fr.openobject.blog.tutorial.cdi;
 
 import fr.openobject.blog.tutorial.cdi.bean.Manager;
-import static java.lang.System.exit;
+
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
+
+import java.util.UUID;
+
+import static java.lang.System.exit;
 
 public class CdiApplication {
 
     public static void main(String[] args) {
 
         try (final SeContainer container = SeContainerInitializer.newInstance().addBeanClasses(Manager.class).initialize()) {
-            container.select(Manager.class).get().echo("it works!");
+            container.select(Manager.class).get().echo(UUID.randomUUID().toString());
         }
 
         exit(0);
