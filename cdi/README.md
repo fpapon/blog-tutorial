@@ -26,7 +26,7 @@ https://openwebbeans.apache.org/
 
 Maven:
 
-```
+```shell
 mvn clean install
 ```
 
@@ -34,7 +34,7 @@ mvn clean install
 
 Execute:
 
-```
+```shell
 mvn exec:java
 ...
 INFOS: OpenWebBeans Container has started, it took [92] ms.
@@ -50,7 +50,7 @@ https://geronimo.apache.org/arthur/
 
 Maven:
 
-```
+```shell
 mvn arthur:native-image
 ```
 
@@ -58,8 +58,22 @@ mvn arthur:native-image
 
 Execute:
 
-```
+```shell
 ./target/cdi.graal.bin
 ...
 INFO: OpenWebBeans Container has started, it took [2] ms.
+```
+
+### Docker
+
+Thanks to Arthur, you can easily build a Docker image from your binary by running:
+
+```shell
+mvn arthur:docker
+```
+
+You need to build your binary first or use the full command:
+
+```shell
+mvn arthur:native-image arthur:docker
 ```
