@@ -79,6 +79,7 @@
         <module>tomcat-docker</module>
         <module>kafka</module>
         <module>elasticsearch</module>
+        <module>fusion</module>
     </modules>
 
     <dependencyManagement>
@@ -257,4 +258,3 @@ under the License.
     </build>
 
 </project>
-

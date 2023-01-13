@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2019-Present - François Papon - Openobject.fr - https://openobject.fr
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+     https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>fr.openobject.blog.tutorial</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>fusion</artifactId>
+    <name>Kamino :: Blog :: Tutorial :: Fusion</name>
+
+    <properties>
+        <fusion.version>1.0.0-SNAPSHOT</fusion.version>
+        <h2.version>2.1.214</h2.version>
+        <arthur.version>1.0.5</arthur.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.yupiik.fusion</groupId>
+            <artifactId>fusion-build-api</artifactId>
+            <version>${fusion.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.yupiik.fusion</groupId>
+            <artifactId>fusion-processor</artifactId>
+            <version>${fusion.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.yupiik.fusion</groupId>
+            <artifactId>fusion-api</artifactId>
+            <version>${fusion.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.yupiik.fusion</groupId>
+            <artifactId>fusion-persistence</artifactId>
+            <version>${fusion.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.yupiik.fusion</groupId>
+            <artifactId>fusion-http-server</artifactId>
+            <version>${fusion.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.yupiik.fusion</groupId>
+            <artifactId>fusion-json</artifactId>
+            <version>${fusion.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.yupiik.logging</groupId>
+            <artifactId>yupiik-logging-jul</artifactId>
+            <version>1.0.6</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.yupiik.fusion</groupId>
+            <artifactId>fusion-testing</artifactId>
+            <version>${fusion.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <release>17</release>
+                    <fork>false</fork>
+                    <compilerArgs>
+                        <args>-J-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8000</args>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M7</version>
+                <configuration>
+                    <trimStackTrace>false</trimStackTrace>
+                    <systemPropertyVariables>
+                        <java.util.logging.manager>io.yupiik.logging.jul.YupiikLogManager</java.util.logging.manager>
+                        <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <plugin><!-- mvn exec:java -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <mainClass>fr.openobject.blog.tutorial.cdi.CdiApplication</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!--
+                    mvn arthur:native-image for binaries
+                    mvn arthur:native-image arthur:docker for build docker image with binaries
+                -->
+                <groupId>org.apache.geronimo.arthur</groupId>
+                <artifactId>arthur-maven-plugin</artifactId>
+                <version>${arthur.version}</version>
+                <configuration>
+                    <graalVersion>22.3.0.r17</graalVersion>
+                    <main>fr.openobject.blog.tutorial.fusion.FusionMain</main>
+                    <enableAllSecurityServices>false</enableAllSecurityServices>
+                    <allowIncompleteClasspath>false</allowIncompleteClasspath>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
