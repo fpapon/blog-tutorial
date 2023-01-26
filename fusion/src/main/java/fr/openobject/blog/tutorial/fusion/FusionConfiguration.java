@@ -20,7 +20,7 @@ import io.yupiik.fusion.framework.build.api.configuration.RootConfiguration;
 
 @RootConfiguration("fr.openobject.blog.tutorial.fusion")
 public record FusionConfiguration(
-        @Property(value = "customer.organization", documentation = "Default customer organization")
+        @Property(value = "customer.organization", documentation = "Default customer organization", defaultValue = "\"jedi\"")
         String organization)
 
 {}
