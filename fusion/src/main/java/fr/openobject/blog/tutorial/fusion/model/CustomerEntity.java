@@ -15,8 +15,15 @@
  */
 package fr.openobject.blog.tutorial.fusion.model;
 
+import io.yupiik.fusion.framework.build.api.persistence.Column;
+import io.yupiik.fusion.framework.build.api.persistence.Id;
 import io.yupiik.fusion.framework.build.api.persistence.Table;
 
 @Table("CUSTOMER")
-public record CustomerEntity(String id, String firstname, String lastname, String title, String organization) {
+public record CustomerEntity(
+        @Id String id,
+        @Column String firstname,
+        String lastname,
+        String title,
+        String organization) {
 }

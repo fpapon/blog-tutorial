@@ -13,13 +13,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package fr.openobject.blog.tutorial.fusion;
+package fr.openobject.blog.tutorial.fusion.persistence;
 
 import io.yupiik.fusion.framework.build.api.configuration.Property;
 import io.yupiik.fusion.framework.build.api.configuration.RootConfiguration;
 
-@RootConfiguration("fr.openobject.blog.tutorial.fusion")
-public record FusionConfiguration(
-        @Property(value = "customer.organization", documentation = "Default customer organization", defaultValue = "\"jedi\"")
-        String organization) {
+@RootConfiguration("fr.openobject.blog.tutorial.fusion.datasource.customer")
+public record DatasourceCustomerConfiguration(
+        @Property(value = "driver", documentation = "Driver to use")
+        String driver,
+
+        @Property(value = "url", documentation = "JDBC URL to use", required = true)
+        String url,
+
+        @Property(value = "username", documentation = "Database username.")
+        String username,
+
+        @Property(value = "password", documentation = "Database password.")
+        String password) {
 }

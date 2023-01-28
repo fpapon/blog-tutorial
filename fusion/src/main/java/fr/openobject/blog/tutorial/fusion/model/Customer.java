@@ -18,5 +18,10 @@ package fr.openobject.blog.tutorial.fusion.model;
 import io.yupiik.fusion.framework.build.api.json.JsonModel;
 
 @JsonModel
-public record Customer(String id, String firstname, String lastname, String title, String organization) {
+public record Customer(
+        String id,
+        String firstname,
+        String lastname,
+        String title,
+        String organization) {
 }

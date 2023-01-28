@@ -16,6 +16,7 @@
 package fr.openobject.blog.tutorial.fusion;
 
 import fr.openobject.blog.tutorial.fusion.model.Customer;
+import fr.openobject.blog.tutorial.fusion.persistence.CustomerManager;
 import io.yupiik.fusion.framework.build.api.scanning.Bean;
 import io.yupiik.fusion.framework.build.api.scanning.Injection;
 import io.yupiik.fusion.http.server.api.Response;
@@ -33,18 +34,22 @@ public class FusionHttpEndpoint {
     @Injection
     JsonMapper jsonMapper;
 
+    @Injection
+    CustomerManager customerManager;
+
     @Bean
-    public Endpoint customerApi() {
+    public Endpoint customersAll() {
         return Endpoint.of(
                 request -> "GET".equals(request.method()) &&
                         request.path().startsWith("/customers"),
 
                 request -> CompletableFuture.completedStage(
                         Response.of()
-                        .status(200)
-                        .header("content-type", "application/json")
-                        .body(jsonMapper.toString(
-                                new Customer(UUID.randomUUID().toString(), "obiwan", "kenobi", "master", conf.organization())))
-                        .build()));
+                                .status(200)
+                                .header("content-type", "application/json")
+                                .body(jsonMapper.toString(
+                                        new Customer(UUID.randomUUID().toString(), "obiwan", "kenobi", "master", conf.organization())))
+                                .build()));
     }
+
 }

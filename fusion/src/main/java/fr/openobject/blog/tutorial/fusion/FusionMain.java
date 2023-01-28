@@ -25,6 +25,7 @@ import static java.lang.System.exit;
 public class FusionMain {
 
     private static final Logger logger = Logger.getLogger(FusionMain.class.getName());
+
     public static void main(String[] args) {
         try (final var container = ConfiguringContainer.of().start()) {
             CountDownLatch countDownLatch = new CountDownLatch(1);

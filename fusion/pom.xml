@@ -121,7 +121,17 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <mainClass>fr.openobject.blog.tutorial.cdi.CdiApplication</mainClass>
+                    <mainClass>fr.openobject.blog.tutorial.fusion.FusionMain</mainClass>
+                    <systemProperties>
+                        <systemProperty>
+                            <key>java.util.logging.manager</key>
+                            <value>io.yupiik.logging.jul.YupiikLogManager</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <key>fr.openobject.blog.tutorial.fusion.datasource.customer.url</key>
+                            <value>jdbc:h2:~/target/database</value>
+                        </systemProperty>
+                    </systemProperties>
                 </configuration>
             </plugin>
             <plugin>
