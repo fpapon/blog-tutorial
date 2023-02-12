@@ -15,7 +15,6 @@
  */
 package fr.openobject.blog.tutorial.fusion;
 
-import fr.openobject.blog.tutorial.fusion.model.Customer;
 import fr.openobject.blog.tutorial.fusion.persistence.CustomerManager;
 import io.yupiik.fusion.framework.build.api.scanning.Bean;
 import io.yupiik.fusion.framework.build.api.scanning.Injection;
@@ -23,7 +22,6 @@ import io.yupiik.fusion.http.server.api.Response;
 import io.yupiik.fusion.http.server.spi.Endpoint;
 import io.yupiik.fusion.json.JsonMapper;
 
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public class FusionHttpEndpoint {
@@ -48,7 +46,7 @@ public class FusionHttpEndpoint {
                                 .status(200)
                                 .header("content-type", "application/json")
                                 .body(jsonMapper.toString(
-                                        new Customer(UUID.randomUUID().toString(), "obiwan", "kenobi", "master", conf.organization())))
+                                        customerManager.findAllCustomer()))
                                 .build()));
     }
 
