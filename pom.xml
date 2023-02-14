@@ -81,6 +81,7 @@
         <module>elasticsearch</module>
         <module>fusion</module>
         <module>reactive</module>
+        <module>shiro</module>
     </modules>
 
     <dependencyManagement>
