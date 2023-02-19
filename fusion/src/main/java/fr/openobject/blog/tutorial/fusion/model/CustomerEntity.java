@@ -23,7 +23,7 @@ import io.yupiik.fusion.framework.build.api.persistence.Table;
 public record CustomerEntity(
         @Id String id,
         @Column String firstname,
-        String lastname,
-        String title,
-        String organization) {
+        @Column(name = "LAST_NAME") String lastname,
+        @Column String title,
+        @Column String organization) {
 }

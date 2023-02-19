@@ -1,7 +1,6 @@
 package fr.openobject.blog.tutorial.fusion.persistence;
 
 import fr.openobject.blog.tutorial.fusion.model.CustomerEntity;
-import io.yupiik.fusion.framework.api.RuntimeContainer;
 import io.yupiik.fusion.framework.api.scope.ApplicationScoped;
 import io.yupiik.fusion.persistence.api.Database;
 import io.yupiik.fusion.persistence.impl.DatabaseConfiguration;
@@ -21,9 +20,9 @@ public class CustomerManager {
     protected CustomerManager() {
     }
 
-    public CustomerManager(final DatasourceCustomerConfiguration configuration, RuntimeContainer container) {
+    public CustomerManager(final DatasourceCustomerConfiguration configuration) {
         DataSource dataSource = new SimpleDataSource(configuration.url(), configuration.username(), configuration.password());
-        this.database = Database.of(new DatabaseConfiguration().setDataSource(dataSource), container);
+        this.database = Database.of(new DatabaseConfiguration().setDataSource(dataSource));
     }
 
     public CustomerEntity findCustomer(String id) {
