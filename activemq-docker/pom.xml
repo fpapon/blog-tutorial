@@ -30,7 +30,7 @@
     <name>Kamino :: Blog :: Tutorial :: ActiveMQ :: Docker</name>
 
     <properties>
-        <activemq.version>5.16.2</activemq.version>
+        <activemq.version>5.17.3</activemq.version>
     </properties>
 
     <build>
@@ -74,7 +74,7 @@
                         </goals>
                         <configuration>
                             <descriptors>
-                                <descriptor>src/main/descriptors/activemq.xml</descriptor>
+                                <descriptor>src/main/resources/descriptors/activemq.xml</descriptor>
                             </descriptors>
                             <appendAssemblyId>false</appendAssemblyId>
                             <tarLongFileMode>gnu</tarLongFileMode>
@@ -90,14 +90,10 @@
                 <configuration>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
                     <from>
-                        <image>openjdk:8-jre-alpine</image>
+                        <image>ossyupiik/java:17.0.4</image>
                     </from>
                     <to>
-                        <image>fpaponapache.azurecr.io/fpaponapache/activemq-custom-distrib:${project.version}</image>
-                        <auth>
-                            <username>fpaponapache</username>
-                            <password></password>
-                        </auth>
+                        <image>fpapon/activemq:${activemq.version}</image>
                     </to>
                     <container>
                         <entrypoint>
@@ -106,12 +102,10 @@
                         </entrypoint>
                         <workingDirectory>/activemq</workingDirectory>
                         <ports>
+                            <!-- expose webconsole -->
                             <port>8161</port>
+                            <!-- expose openwire port -->
                             <port>61616</port>
-                            <port>5672</port>
-                            <port>61613</port>
-                            <port>1883</port>
-                            <port>61614</port>
                         </ports>
                     </container>
                     <extraDirectories>

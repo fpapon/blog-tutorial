@@ -30,7 +30,7 @@
         <junit.version>5.8.2</junit.version>
         <surefire.log.level>INFO</surefire.log.level>
 
-        <jib.version>3.1.4</jib.version>
+        <jib.version>3.3.1</jib.version>
     </properties>
 
     <repositories>
