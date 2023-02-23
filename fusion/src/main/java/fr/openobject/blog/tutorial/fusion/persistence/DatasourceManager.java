@@ -15,24 +15,21 @@
  */
 package fr.openobject.blog.tutorial.fusion.persistence;
 
-import fr.openobject.blog.tutorial.fusion.model.CustomerEntity;
 import io.yupiik.fusion.framework.api.scope.ApplicationScoped;
+import io.yupiik.fusion.framework.build.api.scanning.Bean;
 import io.yupiik.fusion.framework.build.api.scanning.Injection;
-import io.yupiik.fusion.persistence.api.Database;
+import io.yupiik.fusion.persistence.impl.datasource.SimpleDataSource;
 
-import java.util.List;
+import javax.sql.DataSource;
 
 @ApplicationScoped
-public class CustomerManager {
+public class DatasourceManager {
 
     @Injection
-    public Database database;
+    public DatasourceCustomerConfiguration configuration;
 
-    public CustomerEntity findCustomer(String id) {
-        return database.findById(CustomerEntity.class, id);
-    }
-
-    public List<CustomerEntity> findAllCustomer() {
-        return database.findAll(CustomerEntity.class);
+    @Bean
+    public DataSource dataSource() {
+        return new SimpleDataSource(configuration.url(), configuration.username(), configuration.password());
     }
 }

@@ -21,7 +21,7 @@ import io.yupiik.fusion.framework.build.api.persistence.Table;
 
 @Table("CUSTOMER")
 public record CustomerEntity(
-        @Id String id,
+        @Id Integer id,
         @Column String firstname,
         @Column(name = "LAST_NAME") String lastname,
         @Column String title,
