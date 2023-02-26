@@ -17,13 +17,32 @@ package fr.openobject.blog.tutorial.fusion.model;
 
 import io.yupiik.fusion.framework.build.api.persistence.Column;
 import io.yupiik.fusion.framework.build.api.persistence.Id;
+import io.yupiik.fusion.framework.build.api.persistence.OnInsert;
+import io.yupiik.fusion.framework.build.api.persistence.OnLoad;
 import io.yupiik.fusion.framework.build.api.persistence.Table;
+
+import java.util.Objects;
+import java.util.UUID;
 
 @Table("CUSTOMER")
 public record CustomerEntity(
-        @Id Integer id,
+        @Id(autoIncremented = false, order = 0) String id,
         @Column String firstname,
         @Column(name = "LAST_NAME") String lastname,
         @Column String title,
         @Column String organization) {
+
+    @OnInsert
+    public CustomerEntity onInsert() {
+        return id() == null ?
+                new CustomerEntity(UUID.randomUUID().toString(), firstname(), lastname(), title(), organization()) :
+                this;
+    }
+
+    @OnLoad
+    public CustomerEntity onLoad() {
+        return Objects.isNull(title()) ?
+                new CustomerEntity(id(), firstname(), lastname(), "None", organization()) :
+                this;
+    }
 }
