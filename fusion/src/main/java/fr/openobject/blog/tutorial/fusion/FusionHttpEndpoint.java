@@ -15,7 +15,7 @@
  */
 package fr.openobject.blog.tutorial.fusion;
 
-import fr.openobject.blog.tutorial.fusion.persistence.CustomerManager;
+import fr.openobject.blog.tutorial.fusion.persistence.CustomerDao;
 import io.yupiik.fusion.framework.build.api.scanning.Bean;
 import io.yupiik.fusion.framework.build.api.scanning.Injection;
 import io.yupiik.fusion.http.server.api.Response;
@@ -33,7 +33,7 @@ public class FusionHttpEndpoint {
     JsonMapper jsonMapper;
 
     @Injection
-    CustomerManager customerManager;
+    CustomerDao customerDao;
 
     @Bean
     public Endpoint customersAll() {
@@ -46,7 +46,7 @@ public class FusionHttpEndpoint {
                                 .status(200)
                                 .header("content-type", "application/json")
                                 .body(jsonMapper.toString(
-                                        customerManager.findAllCustomer()))
+                                        customerDao.findAllCustomer()))
                                 .build()));
     }
 

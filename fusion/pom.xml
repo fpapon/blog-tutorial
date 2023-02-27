@@ -33,6 +33,7 @@
         <fusion.version>1.0.0-SNAPSHOT</fusion.version>
         <h2.version>2.1.214</h2.version>
         <arthur.version>1.0.5</arthur.version>
+        <tomcat.version>10.1.6</tomcat.version>
     </properties>
 
     <dependencies>
@@ -58,6 +59,11 @@
             <groupId>io.yupiik.fusion</groupId>
             <artifactId>fusion-persistence</artifactId>
             <version>${fusion.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>${tomcat.version}</version>
         </dependency>
         <dependency>
             <groupId>io.yupiik.fusion</groupId>

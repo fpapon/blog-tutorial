@@ -26,10 +26,6 @@ public class FusionMain {
 
     private static final Logger logger = Logger.getLogger(FusionMain.class.getName());
 
-    /*
-    jdbc:h2:file:./target/test;INIT=RUNSCRIPT FROM './src/test/resources/create.sql'
-     */
-
     public static void main(String[] args) {
         try (final var container = ConfiguringContainer.of().start()) {
             CountDownLatch countDownLatch = new CountDownLatch(1);

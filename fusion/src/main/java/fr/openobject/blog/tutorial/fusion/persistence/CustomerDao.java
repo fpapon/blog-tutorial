@@ -17,22 +17,28 @@ package fr.openobject.blog.tutorial.fusion.persistence;
 
 import fr.openobject.blog.tutorial.fusion.model.CustomerEntity;
 import io.yupiik.fusion.framework.api.scope.ApplicationScoped;
-import io.yupiik.fusion.framework.build.api.scanning.Injection;
 import io.yupiik.fusion.persistence.api.Database;
+import io.yupiik.fusion.persistence.impl.datasource.tomcat.TomcatDataSource;
 
 import java.util.List;
 
 @ApplicationScoped
-public class CustomerManager {
+public class CustomerDao {
 
-    @Injection
-    public Database database;
+    private final Database database;
 
-    public CustomerEntity findCustomer(String id) {
+    private final TomcatDataSource dataSource;
+
+    public CustomerDao(final Database database, final TomcatDataSource dataSource) {
+        this.database = database;
+        this.dataSource = dataSource;
+    }
+
+    public CustomerEntity findCustomer(final String id) {
         return database.findById(CustomerEntity.class, id);
     }
 
     public List<CustomerEntity> findAllCustomer() {
-        return database.findAll(CustomerEntity.class);
+        return dataSource.read(() -> database.findAll(CustomerEntity.class));
     }
 }
