@@ -30,10 +30,10 @@
     <name>Kamino :: Blog :: Tutorial :: Fusion</name>
 
     <properties>
-        <fusion.version>1.0.0-SNAPSHOT</fusion.version>
+        <fusion.version>1.0.0</fusion.version>
         <h2.version>2.1.214</h2.version>
         <arthur.version>1.0.5</arthur.version>
-        <tomcat.version>10.1.6</tomcat.version>
+        <tomcat.version>10.1.7</tomcat.version>
     </properties>
 
     <dependencies>
