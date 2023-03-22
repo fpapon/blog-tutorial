@@ -15,22 +15,32 @@
  */
 package fr.openobject.blog.tutorial.cdi;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import fr.openobject.blog.tutorial.cdi.api.Log;
 import fr.openobject.blog.tutorial.cdi.bean.Manager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.message.ObjectMessage;
 
 import javax.enterprise.inject.se.SeContainer;
 import javax.enterprise.inject.se.SeContainerInitializer;
-
 import java.util.UUID;
 
+import static fr.openobject.blog.tutorial.cdi.api.Log.Type.AUDIT;
 import static java.lang.System.exit;
 
 public class CdiApplication {
+    
+    private final static Logger logger = LogManager.getLogger(CdiApplication.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
 
         try (final SeContainer container = SeContainerInitializer.newInstance().addBeanClasses(Manager.class).initialize()) {
             container.select(Manager.class).get().echo(UUID.randomUUID().toString());
         }
+        Log log = new Log(AUDIT, "Application started");
+
+        logger.info(new ObjectMessage(log));
 
         exit(0);
     }
