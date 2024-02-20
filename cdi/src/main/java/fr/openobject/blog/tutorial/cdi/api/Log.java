@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2023 - Yupiik SAS - https://www.yupiik.com
+ * Copyright (c) 2019-Present - François Papon - Openobject.fr - https://openobject.fr
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ *  https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
