@@ -28,6 +28,7 @@
 
     <artifactId>karaf-custom-distribution</artifactId>
     <name>Kamino :: Blog :: Tutorial :: Karaf :: Custom distribution</name>
+    <packaging>pom</packaging>
 
     <properties>
         <karaf.runtime.version>4.4.3</karaf.runtime.version>
