@@ -30,7 +30,7 @@
     <name>Kamino :: Blog :: Tutorial :: ActiveMQ :: Docker</name>
 
     <properties>
-        <activemq.version>5.17.3</activemq.version>
+        <activemq.version>5.18.3</activemq.version>
     </properties>
 
     <build>
@@ -90,7 +90,7 @@
                 <configuration>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
                     <from>
-                        <image>ossyupiik/java:17.0.4</image>
+                        <image>ossyupiik/java:17.0.9</image>
                     </from>
                     <to>
                         <image>fpapon/activemq:${activemq.version}</image>
