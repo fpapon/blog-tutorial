@@ -30,10 +30,10 @@
     <name>Kamino :: Blog :: Tutorial :: Fusion</name>
 
     <properties>
-        <fusion.version>1.0.14</fusion.version>
+        <fusion.version>1.0.20</fusion.version>
         <h2.version>2.2.224</h2.version>
         <arthur.version>1.0.8</arthur.version>
-        <tomcat.version>10.1.19</tomcat.version>
+        <tomcat.version>10.1.26</tomcat.version>
     </properties>
 
     <dependencies>
@@ -78,7 +78,7 @@
         <dependency>
             <groupId>io.yupiik.logging</groupId>
             <artifactId>yupiik-logging-jul</artifactId>
-            <version>1.0.7</version>
+            <version>1.0.8</version>
             <scope>test</scope>
         </dependency>
 
@@ -100,7 +100,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>3.13.0</version>
                 <configuration>
                     <release>17</release>
                     <fork>false</fork>
@@ -112,7 +112,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M9</version>
+                <version>3.3.1</version>
                 <configuration>
                     <trimStackTrace>false</trimStackTrace>
                     <systemPropertyVariables>
@@ -124,7 +124,7 @@
             <plugin><!-- mvn exec:java -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.3.0</version>
                 <configuration>
                     <mainClass>fr.openobject.blog.tutorial.fusion.FusionMain</mainClass>
                     <systemProperties>
@@ -156,5 +156,12 @@
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>maven_central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+    </repositories>
 
 </project>
