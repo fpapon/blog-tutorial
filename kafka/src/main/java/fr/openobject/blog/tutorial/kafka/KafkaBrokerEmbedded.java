@@ -62,7 +62,7 @@ public class KafkaBrokerEmbedded {
     private KafkaServer startBroker(Properties props) {
         List<KafkaMetricsReporter> kmrList = new ArrayList<>();
         Buffer<KafkaMetricsReporter> metricsList = scala.collection.JavaConverters.asScala(kmrList);
-        KafkaServer server = new KafkaServer(new KafkaConfig(props), new SystemTime(), Option.<String>empty(), metricsList);
+        KafkaServer server = new KafkaServer(new KafkaConfig(props), new SystemTime(), Option.<String>empty(), false);
         server.startup();
         return server;
     }
