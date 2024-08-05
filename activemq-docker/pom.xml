@@ -30,7 +30,7 @@
     <name>Kamino :: Blog :: Tutorial :: ActiveMQ :: Docker</name>
 
     <properties>
-        <activemq.version>5.18.3</activemq.version>
+        <activemq.version>6.1.2</activemq.version>
     </properties>
 
     <build>
@@ -38,7 +38,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>3.7.0</version>
                 <executions>
                     <execution>
                         <id>unpack-activemq</id>
@@ -64,7 +64,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.7.1</version>
                 <executions>
                     <execution>
                         <id>activemq</id>
