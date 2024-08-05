@@ -35,8 +35,6 @@ public class EsApplication {
     public static void main(String[] args) throws IOException {
 
         HttpHost host = new HttpHost("localhost", 9200);
-        final RestClientBuilder builder = RestClient.builder(host);
-        RestHighLevelClient client = new RestHighLevelClient(builder);
 
         final BoolQueryBuilder qb = QueryBuilders.boolQuery()
                 .must(QueryBuilders.matchQuery("uuid","203bd55d-05c6-497d-8441-7be0114e4400"))
@@ -44,10 +42,13 @@ public class EsApplication {
 
         SearchRequest searchRequest = new SearchRequest("my-index");
         searchRequest.source().from(0).size(20).query(qb);
-        final SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
 
-        final SearchHit[] hits = response.getHits().getHits();
-        System.out.println("Results = " + hits.length);
+        final RestClientBuilder builder = RestClient.builder(host);
+        try (RestHighLevelClient client = new RestHighLevelClient(builder)) {
+            final SearchResponse response = client.search(searchRequest, RequestOptions.DEFAULT);
+            final SearchHit[] hits = response.getHits().getHits();
+            System.out.println("Results = " + hits.length);
+        }
 
         exit(0);
     }
