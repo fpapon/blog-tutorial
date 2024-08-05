@@ -30,7 +30,7 @@
     <name>Kamino :: Blog :: Tutorial :: Tomcat :: Docker</name>
 
     <properties>
-        <tomcat.version>8.5.53</tomcat.version>
+        <tomcat.version>10.1.26</tomcat.version>
     </properties>
 
     <build>
@@ -38,7 +38,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.7.0</version>
                 <executions>
                     <execution>
                         <id>unpack-tomcat</id>
@@ -69,7 +69,7 @@
                                 <artifactItem>
                                     <groupId>org.apache.shiro.samples</groupId>
                                     <artifactId>samples-web</artifactId>
-                                    <version>1.4.2</version>
+                                    <version>1.8.0</version>
                                     <type>war</type>
                                     <outputDirectory>target/tomcat/apache-tomcat-${tomcat.version}/webapps</outputDirectory>
                                 </artifactItem>
@@ -88,7 +88,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.7.1</version>
                 <executions>
                     <execution>
                         <id>tomcat</id>
@@ -114,14 +114,10 @@
                 <configuration>
                     <allowInsecureRegistries>true</allowInsecureRegistries>
                     <from>
-                        <image>openjdk:8-jre-alpine</image>
+                        <image>ossyupiik/java:17.0.9</image>
                     </from>
                     <to>
-                        <image>fpaponapache.azurecr.io/fpaponapache/tomcat-custom-distrib:${project.version}</image>
-                        <auth>
-                            <username>fpaponapache</username>
-                            <password></password>
-                        </auth>
+                        <image>fpapon/tomcat:${tomcat.version}</image>
                     </to>
                     <container>
                         <entrypoint>
